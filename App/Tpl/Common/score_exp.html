@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>排行榜</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body>
+    <!-- Carousel
+================================================== img:900*500-->
+      <include file="Common:header" />
+
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+      <div class="container" style="max-width:1280px">
+        <legend>
+        	<h3>经验排行版</h3>
+        </legend>
+          
+        <div class="form-group">
+              <form class="form-inline" role="form" action="__APP__/Public/score_exp" method="get">
+                     <div class="form-group">
+                        <label class="sr-only" for="username">昵称条件</label>
+                         <input name="username" class="form-control" id="exampleInputEmail2" placeholder="昵称条件" value="{$username}">
+                      </div>
+                      
+                     <input type="hidden" name="pageId" value='0'/>
+                      <button type="submit" class="btn btn-primary" >条件搜索</button>
+                 <a  href="__APP__/Public/score_exp?pageId=0" class="btn btn-default" role="button" >默认搜索</a>
+                 &nbsp;&nbsp;用户统计：{$numOfUser}    
+              </form>
+           </div>
+          
+        <div class="row">   
+             <div class="panel panel-danger">
+                    <div class="col-xs-10 col-md-10 panel-heading">
+                <div class="col-xs-1 col-md-1">排名</div>
+                <div class="col-xs-3 col-md-3">用户名</div>
+                <div class="col-xs-2 col-md-2">称号</div>
+                <div class="col-xs-1 col-md-1">经验值</div>
+                <div class="col-xs-1 col-md-1">积分</div>
+                <div class="col-xs-2 col-md-2">有效经验值</div>
+                <div class="col-xs-2 col-md-2">备注</div>
+                 </div></div>
+			<volist name="list" id="item">
+                <div class="panel panel-info">
+                    <div class="col-xs-10 col-md-10 panel-heading">
+                        <div class="col-xs-1 col-md-1">{$item.index}</div>
+                        <div class="col-xs-3 col-md-3"><img src="{$item.img}" height="45px" alt="头像"/>{$item.username}</div>
+                        <div class="col-xs-2 col-md-2">{$item.level}</div>
+                        <div class="col-xs-1 col-md-1">{$item.experience}</div>
+                        <div class="col-xs-1 col-md-1">{$item.score}</div>
+                        <div class="col-xs-2 col-md-2">{$item.value_exp}</div>
+                        <div class="col-xs-2 col-md-2"><if condition="$item.role eq 0">不计入奖励名单</if></div>
+                     </div>
+                </div>
+            </volist>
+            <input type="hidden" id="pageId" value=""/>
+            
+    </div>
+          <div class="row col-xs-10 col-md-10">
+              <ul class="pager">
+                  <if condition="$pageId eq $pageId1">
+                      <li class="previous"><a style="margin-top:20px"  href="#">&larr; Older</a></li> 
+                      <else/>
+                      <li class="previous"><a style="margin-top:20px"  href="__APP__/Public/score_exp?pageId={$pageId1}{$condition}">&larr; Older</a></li>
+                  </if>
+                  <li class="center"><a style="margin-top:20px" href="#">{$page}</a></li>
+                  <if condition="$pageId eq $pageId2">
+                      <li class="next"><a style="margin-top:20px" href="#">Newer &rarr;</a></li>
+                      <else/>
+                      <li class="next"><a style="margin-top:20px" href="__APP__/Public/score_exp?pageId={$pageId2}{$condition}">Newer &rarr;</a></li>
+                  </if>
+                  
+              </ul>
+          </div>
+    <div class="row col-xs-10 col-md-10">
+		<include file="Common:footer" />
+    </div>
+          
+     
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+      
+  </body>
+</html>

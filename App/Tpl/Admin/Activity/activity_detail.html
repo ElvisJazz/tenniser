@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>后台管理</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    <link href="__CSS__/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="load(2)">
+    <!-- Carousel
+================================================== img:900*500-->
+      <include file="Common:header" />  
+	  
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container">        
+        <legend>
+            <h3>活动模块后台管理</h3>
+        </legend>
+        <div class="row">
+         <div class="col-xs-2 col-md-2">
+             <ul class="nav nav-pills nav-stacked">
+                 <li align="center" class="{$class0}"><a href="__APP__/Admin/Activity/activity_list?type=0&pageId=0">全部 <span class="sr-only">(current)</span></a></li>
+                 <li align="center" class="{$class1}"><a href="__APP__/Admin/Activity/activity_list?type=1&pageId=0">教球 <span class="sr-only">(current)</span></a></li>
+                 <li align="center" class="{$class2}"><a href="__APP__/Admin/Activity/activity_list?type=2&pageId=0">比赛 <span class="sr-only">(current)</span></a></li>
+                 <li align="center" class="{$class3}"><a href="__APP__/Admin/Activity/activity_list?type=3&pageId=0">招新 <span class="sr-only">(current)</span></a></li>
+                 <li align="center" class="{$class4}"><a href="__APP__/Admin/Activity/activity_list?type=4&pageId=0">其他 <span class="sr-only">(current)</span></a></li>
+             </ul>  
+         </div>
+         <div class="col-sm-9"> 
+                        
+                        <form   class="form-horizontal" role="form" action="__APP__/Admin/Activity/activity_submit" method="post">
+                            <div class="jumbotron" style="background-color:#3C4138; color:white;">
+                            <input type="hidden" name="id" value="{$item.id}" />
+                            <input type="hidden" name="type" value="{$item.type}" />
+                                <input type="hidden" name="club_id" value="{$item.club_id}" />
+                                <input type="hidden" name="add" value="{$add}" />
+                	<div class="form-group">
+                        <label class="col-sm-2 control-label">标题</label>
+                        <div class="col-sm-10 ">
+                            <input name="title"  class="form-control" value="{$item.title}" autofocus="autofocus"  required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">简介</label>
+                        <div class="col-sm-10 ">
+                            <textarea name="introduction" rows="3" class="form-control" required>{$item.introduction}</textarea>
+                        </div>
+                     </div>
+					<div class="form-group">
+                        <label class="col-sm-2 control-label">内容</label>
+                        <div class="col-sm-10 ">
+                            <textarea name="content" rows="12" class="form-control" required>{$item.content}</textarea>
+                        </div>
+                     </div>           
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">类型</label>
+                        <div class="col-sm-10 ">
+                            <select name="type" value="{$item.type}" class="form-control" >
+                            	<if condition="$item.type eq 1">
+                                  <option value ="1" selected >教球</option>
+                                    <else/>
+                                   <option value ="1" >教球</option>
+                                </if>
+                                <if condition="$item.type eq 2">
+                                  <option value ="2" selected >比赛</option>
+                                    <else/>
+                                   <option value ="2" >比赛</option>
+                                </if>
+                                <if condition="$item.type eq 3">
+                                  <option value ="3" selected >招新</option>
+                                    <else/>
+                                   <option value ="3" >招新</option>
+                                </if>
+                                <if condition="$item.type eq 4">
+                                  <option value ="4" selected >其他</option>
+                                    <else/>
+                                   <option value ="4"  >其他</option>
+                                </if>
+                            </select>
+                        </div>
+                    </div>                   
+                    <div class="form-group">
+                            <label class="col-sm-2 control-label">地点</label>
+                            <div class="col-sm-10 ">
+                              <input name="location" class="form-control" value="{$item.location}" required>
+                            </div>
+                     </div>                      
+                     <div class="form-group">           
+                         <label for="start_time" class="col-sm-2 control-label">开始时间</label>
+                        <div style="margin-left:22%" class="input-group date form_datetime col-sm-4" data-date="{$now}" data-date-format="yyyy-mm-dd hh:ii:ss" data-link-field="start_time">
+                            <input  class="form-control" size="16" type="text" value="{$item.start_time}" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                         <input type="hidden" name="start_time" id="start_time" value="{$item.start_time}" required/><br/>
+                      </div>
+                      <div class="form-group">           
+                         <label for="end_time" class="col-sm-2 control-label">结束时间</label>
+                        <div style="margin-left:22%" class="input-group date form_datetime col-sm-4" data-date="{$now}" data-date-format="yyyy-mm-dd hh:ii:ss" data-link-field="end_time">
+                            <input  class="form-control" size="16" type="text" value="{$item.end_time}" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                         <input type="hidden" name="end_time" id="end_time" value="{$item.end_time}" required/><br/>
+                      </div>
+                     
+                     <div class="form-group">
+                            <label class="col-sm-2 control-label">组织方</label>
+                            <div class="col-sm-10 ">
+                              <input name="organizer" class="form-control" value="{$item.organizer}" required>
+                            </div>
+                     </div> 
+                                
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">参与方</label>
+                        <div class="col-sm-10 ">
+                            <input name="participant" value="{$item.participant}" class="form-control" required>
+                        </div>
+                    </div>       
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">是否置顶</label>
+                        <div class="col-sm-4 ">
+                            <if condition="$item.push_top eq 1">
+                                <input type="radio" name="push_top"  value="1" checked="checked">是
+                                &nbsp;&nbsp;
+                                <input type="radio" name="push_top" value="0" >否
+                            <else/>
+                            	<input type="radio" name="push_top"  value="1" >是
+                                &nbsp;&nbsp;
+                                <input type="radio" name="push_top" value="0" checked="checked">否
+                            </if>
+                        </div>
+                    </div>             
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">需要报名</label>
+                        <div class="col-sm-4 ">
+                            <if condition="$item.need_sign eq 1">
+                                    <input type="radio" name="need_sign"  value="1" checked="checked">是
+                                    &nbsp;&nbsp;
+                                    <input type="radio" name="need_sign" value="0" >否
+                             <else/>
+                                <input type="radio" name="need_sign"  value="1">是
+                                &nbsp;&nbsp;
+                                <input type="radio" name="need_sign" value="0" checked="checked">否
+                            </if>
+                        </div>
+                    </div>            
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">封面</label>
+                        <div class="col-sm-10 ">
+                            <div class="col-sm-4">
+                             <if condition="$item.cover eq 1">
+                                <input type="radio" name="cover"  value="1" checked="checked">是
+                                    &nbsp;&nbsp;
+                                <input type="radio" name="cover" value="0" >否
+                             <else/>
+                                <input type="radio" name="cover"  value="1" >是
+                                    &nbsp;&nbsp;
+                                <input type="radio" name="cover" value="0" checked="checked">否
+                            </if>                            	
+                            </div>
+                            <div class=" col-sm-3">
+                            	<a href="#" role="button" class="btn btn-default" data-toggle="modal" data-target="#portraitModal">上传</a>
+                            </div>
+                        </div>
+                    </div>
+                    <if condition="$add eq 0">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">创建人</label>
+                            <div class="col-sm-10 ">
+                                <input value="{$item.update_user0}" class="form-control" disabled>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">创建日期</label>
+                            <div class="col-sm-10 ">
+                                <input value="{$item.update_date}" class="form-control" disabled>
+                            </div>
+                        </div>
+                        <else/>
+                    </if>
+                    
+                        <input type="hidden" name="update_user" value="{$item.update_user}"/>            
+                    
+                  
+                      <div class="form-group">
+                			<div class="col-sm-offset-6">
+                                <button type="submit" class="btn btn-primary">提 交</button>
+                          </div>
+                            </div></div>
+                             </form>  
+                        
+                        </div>
+        </div>
+            </div>
+        <include file="Common:footer" />
+      
+      	 <!-- Modal -->
+        <div class="modal fade" id="portraitModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content" style="width:700px">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel">上传封面(原图比例3:2)</h4>
+                  </div>
+                  <div class="modal-body">
+                      <OBJECT  classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+            codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"
+            WIDTH="600" HEIGHT="450" id="myMovieName">
+            <PARAM NAME=movie VALUE="__PUBLIC__/flash/avatar.swf">
+            <PARAM NAME=quality VALUE=high>
+            <PARAM NAME=bgcolor VALUE=#FFFFFF>
+            <param name="flashvars" value="imgUrl=__IMG__/portrait.jpg&uploadUrl=__APP__/Activity/do_avatar_edit&uploadSrc=true" />
+                <EMBED src="__PUBLIC__/flash/avatar.swf" quality=high bgcolor=#FFFFFF WIDTH="600" HEIGHT="450" wmode="transparent" flashVars="imgUrl=__IMG__/portrait.jpg&uploadUrl=__APP__/Admin/Activity/do_avatar_edit&uploadSrc=true"	NAME="myMovieName" ALIGN="" TYPE="application/x-shockwave-flash" allowScriptAccess="always"	PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer" />
+        </OBJECT>
+          
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div>
+            
+         <script type="text/javascript" src="__JS__/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="__JS__/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+         <script>
+            $('.form_datetime').datetimepicker({
+            language:  'zh-CN',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            showMeridian: 1
+        });
+        $('.form_date').datetimepicker({
+            language:  'zh-CN',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+        $('.form_time').datetimepicker({
+            language:  'zh-CN',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 1,
+            minView: 0,
+            maxView: 1,
+            forceParse: 0
+        });
+                //在页面初始化事件（onload）时注册的自定义事件
+                window.addEventListener("load", loadDemo, false);
+        </script>
+	
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>

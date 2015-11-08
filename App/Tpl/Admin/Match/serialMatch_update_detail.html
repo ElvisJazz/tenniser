@@ -1,0 +1,437 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>赛程赛况</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    <link href="__CSS__/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+    
+    
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="load(2)">
+    <!-- Carousel
+================================================== img:900*500-->
+    <include file="Common:header" />
+
+    <div class="container" style="min-width:1100px; max-width:1280px"> 
+        <legend><h2 class="title-color">赛事更新平台</h2></legend>
+       
+      <div class="thumbnail">
+         <div class="caption"> 
+         	 <div class="row">
+                <div class="col-sm-7 col-xs-7">
+                    <h3>{$activity[title]}</h3>
+                    <p>内容：{$activity[content]}</p>
+                    <p>时间：{$activity[start_time]}至{$activity[end_time]}</p>
+                    <p>参赛者数目：{$activity[headcount]}</p>
+                    <if condition="$activity.result neq ''">
+                    	<p>比赛结果：{$activity.result}</p>
+                    </if>
+                    <a class="btn btn-info" data-toggle="modal" data-target="#editMatchResult" onclick="$('#matchResultForm').attr('action','__APP__/Admin/Match/groupSerialMatch_update_submit?result=1&serialMatchId={$activity[id]}');" >编辑比赛结果</a>
+                	<a class="btn btn-danger" href="__APP__/Admin/Match/groupSerialMatch_delete?type=0&serialMatchId={$activity[id]}" onclick='var r=confirm("此操作不可逆，是否确定？"); if(r==false) return false;'>删除所有小组赛数据</a>
+                	<a class="btn btn-danger" href="__APP__/Admin/Match/groupSerialMatch_delete?type=1&serialMatchId={$activity[id]}" onclick='var r=confirm("此操作不可逆，是否确定？"); if(r==false) return false;'>删除所有淘汰赛数据</a>
+                      </div>
+                <div class="col-sm-5 col-xs-5">
+                    <img src="{$activity.cover}"/>
+                </div>
+                
+             </div>
+         </div>
+       </div>
+        
+        
+       <div class="row">
+           <ul class="nav nav-tabs">
+               <li class="active"><a href="#score" data-toggle="tab">积分榜</a></li>
+               <li class=""><a href="#groupMatch" data-toggle="tab">小组赛赛程</a></li>
+               <li class=""><a href="#eliminationMatch" data-toggle="tab">淘汰赛赛程</a></li>
+               <li class=""><a href="#teamInfo" data-toggle="tab">参赛队伍信息</a></li>
+           </ul>
+           
+           <div class="tab-content  caption">
+               <div class="tab-pane fade active in" id="score"><!--分页1开始--> 
+                   <if condition="$exist1 eq 0">
+                   		<center><img src="__IMG__/notExist.jpg"  alt="暂无"/></center>
+                   <else/>
+                       <volist name="score_list" id="score_item">
+                           <div class="col-xs-12 col-md-6">    	
+                               <h3><strong>{$score_item.group}组</strong></h3>
+                              <table class="table table-condensed">
+                                  <tbody>
+                                      <tr class="btn-primary">
+                                          <th>排名</th>
+                                          <th>选手(队伍)</th>
+                                          <th>组别</th>
+                                          <th>场次</th>
+                                          <th>胜</th>
+                                          <th>负</th>
+                                          <th>净胜局</th>
+                                          <th>积分</th>
+                                      </tr> 
+                                      <volist name="score_item['player']" id="player_item">
+                                          <tr>
+                                              <td>
+                                                  <if condition="$player_item.index lt 3">
+                                                      <span class="btn-danger">{$player_item.index}</span>
+                                                  <else/>
+                                                      {$player_item.index}
+                                                  </if>
+                                              </td>
+                                              <td>{$player_item.truename}</td>
+                                              <td>{$player_item.no}</td>
+                                              <td>{$player_item.round}</td>
+                                              <td>{$player_item.win}</td>
+                                              <td>{$player_item.lost}</td>
+                                              <td>{$player_item.offset}</td>
+                                              <td>{$player_item.score}</td>
+                                          </tr>
+                                      </volist>
+                                  </tbody>
+                              </table> 
+                           </div> 
+                       </volist>
+                      
+                       
+                        <div>
+                            <legend><h4><strong>{$title}积分榜排名计算规则：</strong></h4></legend>
+                            <p>一、积分形式根据赛事组织者安排。</p>
+                            <p>二、小组排名依次依照下列规则从多到少排列：</p>
+                            <p>　　1. 小组赛总积分；</p>
+                            <p>　　2. 小组赛总净胜场数；</p>
+                            <p>　　3. 小组赛总净胜局数；</p>
+                            <p>　　如果两支或以上多支球队依照前述规则未分出排名先后，他们的排名将依照下列规则从多到少排列：</p>
+                            <p>　　4. 涉及球队间相互比赛的总积分；</p>
+                            <p>　　5. 涉及球队间相互比赛的总净胜场数；</p>
+                            <p>　　6. 涉及球队间相互比赛的总净胜局数；</p>
+                            <p>　　7. 由赛事组织方抽签决定。</p>
+                         </div> 
+                   </if>
+               </div><!--分页1结束--> 
+              							 
+               <div class="tab-pane fade  in" id="groupMatch"><!--分页2开始-->            
+                   
+                   <if condition="$exist2 eq 0">
+                   		<center><img src="__IMG__/notExist.jpg"  alt="暂无"/></center>
+                   <else/>
+                       <volist name="group_list" id="group_item">
+                           <div class="row">    	
+                              <h3><strong>{$group_item.group}组</strong></h3>
+                              <table class="table table-condensed">
+                                  <tbody>
+                                      <tr class="btn-primary">
+                                          <th>比赛时间</th>
+                                          <th>对阵</th>
+                                          <th>组别</th>
+                                          <th>状态</th>
+                                          <th>场次</th>
+                                      </tr> 
+                                      <volist name="group_item['players']" id="players_item">
+                                          <tr>
+                                              <td>{$players_item.start_date}——{$players_item.end_date}</td>
+                                              <td>{$players_item.player1}【{$players_item.score}】{$players_item.player2}&nbsp;&nbsp;
+                                                  <a class="btn" data-toggle="modal" data-target="#editGroupMatch" 
+                                                  onclick="$('#groupMatchForm').attr('action','__APP__/Admin/Match/groupSerialMatch_update_submit?id={$players_item.id}&serialMatchId={$id}');
+														$('#groupMatchVS').text('{$players_item.player1} VS {$players_item.player2}');
+														$('#groupMatchWinner').val('{$players_item.winner_id}');
+														$('#groupMatchOp1').val('{$players_item.player1_id}');$('#groupMatchOp2').val('{$players_item.player2_id}');
+														$('#groupMatchOp1').text('{$players_item.player1}');$('#groupMatchOp2').text('{$players_item.player2}');
+														$('#groupMatchWinner').val('{$players_item.winner_id}');
+														$('#groupMatchStartDate').val('{$players_item.start_date}');
+														$('#groupMatchEndDate').val('{$players_item.end_date}');
+														$('#groupMatchStartDate0').val('{$players_item.start_date}');
+														$('#groupMatchEndDate0').val('{$players_item.end_date}');
+														if('{$players_item.state}' == '未开始') { $('#groupMatchState').val('0');}
+														else if('{$players_item.state}' == '已结束'){ $('#groupMatchState').val('1');}
+														$('#groupMatchScore').val('{$players_item.score}');
+                                                        $('#winnerScoreOffset').val('{$players_item.winnerScoreOffset}');
+                                                        $('#loserScoreOffset').val('{$players_item.loserScoreOffset}');
+														$('#groupMatchOffset').val('{$players_item.offset}');
+														$('#groupMatchRound1').val('{$players_item.round1}');
+														$('#groupMatchRound2').val('{$players_item.round2}');
+														$('#groupMatchPlayer1_id').val('{$players_item.player1_id}');
+														$('#groupMatchPlayer2_id').val('{$players_item.player2_id}');
+														" >
+                                                      <span class="glyphicon glyphicon-edit" title="编辑赛况"></span>
+                                                  </a>
+                                              </td>
+                                              <td>{$group_item.group}{$players_item.no1}-{$group_item.group}{$players_item.no2}</td>
+                                              <td>{$players_item.state}</td>
+                                              <td>[{$players_item.round1},{$players_item.round2}]</td>
+                                          </tr>
+                                      </volist>
+                                  </tbody>
+                              </table> 
+                           </div> <!--end of row-->
+                       </volist> 
+                   </if>
+               </div><!--分页2结束--> 
+               
+               <div class="tab-pane fade in" id="eliminationMatch"><!--分页3开始-->
+                    <br/><br>
+                   <center>
+                  <include file="$scale_html" />
+                   </center>   
+                   <if condition="$exist3 eq 0">
+                   		<center><img src="__IMG__/notExist.jpg"  alt="暂无"/></center>
+                   <else/>
+                       <volist name="elimination_list" id="elimination_item">
+                           <div class="row">    	
+                               <h3><strong>{$elimination_item.title}</strong></h3>
+                              <table class="table table-condensed">
+                                  <tbody>
+                                      <tr class="btn-primary">
+                                          <th>比赛时间</th>
+                                          <th>对阵</th>
+                                          <th>组别</th>
+                                          <th>状态</th>
+                                          <th>轮次</th>
+                                      </tr> 
+                                      <volist name="elimination_item['players']" id="players_item">
+                                          <tr>
+                                              <td>{$players_item.start_date}——{$players_item.end_date}</td>
+                                              <td>{$players_item.vs}</td>
+                                              <td>S{$players_item.no1}-S{$players_item.no2}</td>
+                                              <td>{$players_item.state}</td>
+                                              <td>{$players_item.round}</td>
+                                          </tr>
+                                      </volist>
+                                  </tbody>
+                              </table> 
+                           </div> <!--end of row-->
+                       </volist>
+                   </if>
+               </div><!--分页3结束--> 
+               
+               <div class="tab-pane fade in" id="teamInfo"><!--分页4开始--> 
+                   <if condition="$exist4 eq 0">
+                   		<center><img src="__IMG__/notExist.jpg"  alt="暂无"/></center>
+                   <else/>
+                       <volist name="players_list" id="player_item">
+                           <div class="col-xs-3 col-md-2">
+                               <div class="thumbnail">
+                                   <img width="100%" height="auto" src="{$player_item.portrait}" alt="..."/>
+                                   <div class="caption">
+                                       <table style="font-size:12px">
+                                           <tr>
+                                               <td width="63" valign="baseline">选手：</td>
+                                               <td valign="baseline">{$player_item.truename}</td>  
+                                           </tr>
+                                           <tr>
+                                               <td width="63" valign="baseline">ntrp：</td>
+                                               <td valign="baseline">{$player_item.ntrp}</td>                                 
+                                           </tr>
+                                           <tr>
+                                               <td width="63" valign="baseline">手机号：</td>
+                                               <td valign="baseline">{$player_item.telephone}</td>                                 
+                                           </tr>
+                                       </table>                           
+                                   </div>
+                               </div>
+                           </div>
+                       </volist>
+                   </if>
+               </div><!--分页4结束--> 
+           </div><!--caption结束--> 
+        </div><!--end of row-->
+	<include file="Common:footer" />
+        
+    </div><!--end of container--> 
+    <!-- Modal -->
+    <div class="modal fade" id="editGroupMatch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">赛事更新(<span id="groupMatchVS"></span>)</h4>
+          </div>
+          <div class="modal-body">
+              
+              <form id="groupMatchForm" class="form-horizental" role="form" action="" method="post">
+                  <input type="hidden" name="matchType" id="matchType" value="0" />
+                  <div class="form-group">
+                  <label for="time" class="col-sm-2 control-label">开始时间</label>
+                  <div style="margin-left:22%" class="input-group date form_datetime col-sm-9" data-date="{$now}" data-date-format="yyyy-mm-dd hh:ii:ss" data-link-field="groupMatchStartDate">
+                      <input id="groupMatchStartDate0" class="form-control" size="16" type="text"  readonly>
+                      <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                  </div>
+                  <input type="hidden" name="groupMatchStartDate" id="groupMatchStartDate"  required/><br/>
+              </div>
+              <div class="form-group">
+                  <label for="time" class="col-sm-2 control-label">结束时间</label>
+                  <div style="margin-left:22%" class="input-group date form_datetime col-sm-9" data-date="{$now}" data-date-format="yyyy-mm-dd hh:ii:ss" data-link-field="groupMatchEndDate">
+                      <input  id="groupMatchEndDate0" class="form-control" size="16" type="text" readonly>
+                      <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                  </div>
+                  <input type="hidden" name="groupMatchEndDate" id="groupMatchEndDate" required/><br/>
+              </div>
+                  <div class="row form-group">
+                      <label class="control-label col-sm-2" for="groupMatchWinner">胜者</label>
+                      <div class="col-sm-10">
+                          <select name="groupMatchWinner" id="groupMatchWinner" value="" class="form-control" >
+                              <option id="groupMatchOp0" value="0">暂无</option>
+                              <option id="groupMatchOp1" value ="" ></option>
+                              <option id="groupMatchOp2" value ="" ></option>
+                          </select>
+                      </div>
+                  </div>
+                   <div class="row form-group">
+                      <label class="control-label col-sm-2" for="groupMatchState">状态</label>
+                      <div class="col-sm-10">
+                          <select name="groupMatchState" id="groupMatchState" value="" class="form-control" >
+                              <option id="groupMatchStateOp1" value ="0" >未开始</option>
+                              <option id="groupMatchStateOp2" value ="1" >已结束</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="row form-group">
+                      <label class="control-label col-sm-2" for="groupMatchScore">比分</label>
+                      <div class="col-sm-10">
+                          <input name="groupMatchScore" id="groupMatchScore" value="" class="form-control" placeholder="多个以,(半角)隔开，如：1：6,后者弃权 " required>
+                      </div>
+                  </div>
+                  <div class="row form-group">
+                      <label class="control-label col-sm-2" for="groupMatchOffset">净胜局数</label>
+                      <div class="col-sm-10">
+                          <input name="groupMatchOffset" id="groupMatchOffset" value="0" class="form-control" placeholder="本比赛（团体赛）净胜局数 " required>
+                      </div>
+                  </div>
+                  <div class="row form-group">
+                      <label class="control-label col-sm-2" for="winnerScoreOffset">胜者积分</label>
+                      <div class="col-sm-10">
+                          <input name="winnerScoreOffset" id="winnerScoreOffset" value="0" class="form-control" placeholder="胜者获取的积分数 " required>
+                      </div>
+                  </div>
+                  <div class="row form-group">
+                      <label class="control-label col-sm-2" for="loserScoreOffset">负者积分</label>
+                      <div class="col-sm-10">
+                          <input name="loserScoreOffset" id="loserScoreOffset" value="" class="form-control" placeholder="负者获取的积分数 " required>
+                      </div>
+                  </div>
+                  <div class="row form-group">
+                      <label class="control-label col-sm-2">轮数</label>
+                      <div class="col-sm-5">
+                          <input name="groupMatchRound1" id="groupMatchRound1" value="" class="form-control" placeholder="前者本比赛（团体赛）的轮次 " required>
+                      </div>
+                      <div class="col-sm-5">
+                          <input name="groupMatchRound2" id="groupMatchRound2" value="" class="form-control" placeholder="后者本比赛（团体赛）的轮次 " required>
+                      </div>
+                  </div>
+                  
+                  <input type="hidden" name="groupMatchPlayer1_id" id="groupMatchPlayer1_id" value=""/>
+                  <input type="hidden" name="groupMatchPlayer2_id" id="groupMatchPlayer2_id" value=""/>
+                  <input type="hidden" name="next_id" id="next_id" value=""/>
+                  <input type="hidden" name="noPos" id="noPos" value=""/>
+                  <button type="submit" class="btn btn-primary pull-right"> 提交 </button>
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+      
+       <!-- Modal -->
+    <div class="modal fade" id="editMatchResult" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">赛事结果</h4>
+          </div>
+          <div class="modal-body">
+              
+              <form id="matchResultForm" class="form-horizental" role="form" action="" method="post">
+                  <div class="row form-group">
+                      <label class="control-label col-sm-2" for="matchState">状态</label>
+                      <div class="col-sm-10">
+                          <select name="matchState" id="matchState" value="{$activity.state}" class="form-control" >
+                              <if condition="$activity.state eq 0" >
+                              	<option id="matchStateOp1" value ="0" selected >未开始</option>
+                              <else/>
+                             	<option id="matchStateOp1" value ="0">未开始</option>
+                              </if>
+                              <if condition="$activity.state eq 1" >
+                              	<option id="matchStateOp2" value ="1" selected>已结束</option>
+                          	  <else/>
+                             	<option id="matchStateOp2" value ="1" >已结束</option>
+                              </if>
+                          </select>
+                      </div>
+                  </div>
+                   <div class="row form-group">
+                      <label class="control-label col-sm-2" for="matchResult">结果</label>
+                      <div class="col-sm-10">
+                          <textarea rows='3' name="matchResult" id="matchResult"  class="form-control" placeholder="填写比赛最终结果情况 " required >{$activity.result}</textarea>
+                      </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary pull-right"> 提交 </button>
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+      
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+     <script type="text/javascript" src="__JS__/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="__JS__/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+         <script>
+            $('.form_datetime').datetimepicker({
+            language:  'zh-CN',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            showMeridian: 1
+        });
+        $('.form_date').datetimepicker({
+            language:  'zh-CN',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+        $('.form_time').datetimepicker({
+            language:  'zh-CN',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 1,
+            minView: 0,
+            maxView: 1,
+            forceParse: 0
+        });
+       //在页面初始化事件（onload）时注册的自定义事件
+       window.addEventListener("load", false);
+     
+       
+    </script>
+  </body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>后台管理</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="load(5)">
+    <!-- Carousel
+================================================== img:900*500-->
+      <include file="Common:header" />  
+	  
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container">        
+        <legend>
+            <h3>用户模块后台管理</h3>
+        </legend>
+        <form   class="form-horizontal" role="form" action="__APP__/Admin/User/user_submit" method="post">
+            <div class="jumbotron" style="background-color:#3C4138; color:white;">
+                <input type="hidden" name="id" value="{$item.id}" />
+                <input type="hidden" name="add" value="{$add}" />
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">用户名</label>
+                    <div class="col-sm-10 ">
+                        <input name="username"  class="form-control" value="{$item.username}" maxlength=20  required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">真名</label>
+                    <div class="col-sm-10 ">
+                        <input name="truename"  class="form-control"  value="{$item.truename}"  maxlength=6>
+                    </div>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">密码</label>
+                    <div class="col-sm-10 ">
+                        <input name="password"  class="form-control" value="{$item.password}"  pattern="^[\w\W]{6,16}$" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">性别</label>
+                    <div class="col-sm-10 ">
+                        <select name="sex" value="{$item.sex}" class="form-control" >
+                            <if condition="$item.sex eq 0">
+                                <option value ="0" selected >男</option>
+                                <else/>
+                                <option value ="0" >男</option>
+                            </if>
+                            <if condition="$item.sex eq 1">
+                                <option value ="1" selected >女</option>
+                                <else/>
+                                <option value ="1" >女</option>
+                            </if>
+                            
+                        </select>
+                    </div>
+                 </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">手机</label>
+                    <div class="col-sm-10 ">
+                        <input name="telephone"  class="form-control" value="{$item.telephone}"  maxlength=15 pattern="[0-9]*$">
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">邮箱</label>
+                    <div class="col-sm-10 ">
+                        <input name="mailbox"  class="form-control" value="{$item.mailbox}"  pattern="^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$" required>
+                    </div>
+                 </div>
+                
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">QQ</label>
+                    <div class="col-sm-10 ">
+                        <input name="QQ"  class="form-control" value="{$item.QQ}"  pattern="[0-9]*$" >
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">角色</label>
+                    <div class="col-sm-10 ">
+                        <select name="role" value="{$item.role}" class="form-control" >
+                            <if condition="$item.role eq 0">
+                                <option value ="0" selected >管理员</option>
+                                <else/>
+                                <option value ="0" >管理员</option>
+                            </if>
+                            <if condition="$item.role eq 1">
+                                <option value ="1" selected >高级用户</option>
+                                <else/>
+                                <option value ="1" >高级用户</option>
+                            </if>
+                            <if condition="$item.role eq 2">
+                                <option value ="2" selected >普通用户</option>
+                                <else/>
+                                <option value ="2" >普通用户</option>
+                            </if>                            
+                        </select>
+                    </div>                    
+                </div>
+               
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">积分</label>
+                    <div class="col-sm-10 ">
+                        <input name="score"  class="form-control" value="{$item.score}" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">经验值</label>
+                    <div class="col-sm-10 ">
+                        <input name="experience"   class="form-control" value="{$item.experience}"  required >
+                    </div>
+                </div>
+                
+                 <div class="form-group">
+                    <label class="col-sm-2 control-label">有效经验值</label>
+                    <div class="col-sm-10 ">
+                        <input name="value_exp"   class="form-control" value="{$item.value_exp}"  required >
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">ntrp</label>
+                    <div class="col-sm-10 ">
+                        <input name="ntrp"  class="form-control" value="{$item.ntrp}"  pattern="([1-6]\.[05]$)|(7\.0$)" >
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">打球频率</label>
+                    <div class="col-sm-10 ">
+                        <input name="frequency"  class="form-control" value="{$item.frequency}" pattern="[0-7]" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">城市</label>
+                    <div class="col-sm-10 ">
+                        <input name="city"  class="form-control" value="{$item.city}"   maxlength=15>
+                    </div>
+                </div>
+               
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">高校</label>
+                    <div class="col-sm-10 ">
+                        <input name="university"  class="form-control" value="{$item.university}"  maxlength=15>
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">头像</label>
+                    <div class="col-sm-4 ">
+                         <if condition="$item.portrait eq 1">
+                            	<input type="radio" name="portrait"  value="1" checked="checked">有
+                                    &nbsp;&nbsp;
+                                <input type="radio" name="portrait" value="0" >无
+                            <else/>
+                            	<input type="radio" name="portrait"  value="1" >有
+                                    &nbsp;&nbsp;
+                                <input type="radio" name="portrait" value="0" checked="checked">无
+                        </if>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">上次登录时间</label>
+                    <div class="col-sm-10 ">
+                        {$item.last_logon_date}
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">连续登录天数</label>
+                    <div class="col-sm-10 ">
+                        {$item.logon_days}
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">是否封禁</label>
+                    <div class="col-sm-10 ">
+                        <if condition="$item.is_forbidden eq 1">是<else/>否</if>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">封禁开始日期</label>
+                    <div class="col-sm-10 ">
+                        {$item.start_forbid_date}
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">封禁结束日期</label>
+                    <div class="col-sm-10 ">
+                        {$item.end_forbid_date}
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-sm-offset-6">
+                        <button type="submit" class="btn btn-primary">提 交</button>
+                    </div>
+                </div>
+            </div>
+            
+        </form>                
+       
+        <include file="Common:footer" />
+      </div>
+  
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>

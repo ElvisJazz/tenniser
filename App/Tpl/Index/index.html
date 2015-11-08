@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="baidu-tc-verification" content="3d6cd5b551ca679ad2d1646e3590c2ef" />
+    
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>高校网球联盟</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    <link rel="stylesheet" href="__CSS__/flat-ui.css">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/carousel.css" rel="stylesheet">
+    <link href="__CSS__/my.css" rel="stylesheet">
+  
+
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+</head>
+  <body>
+    
+      <div id="jiathis_main" class="container" style="min-width:1100px; max-width:1280px">
+          <div class="logo-headline">
+              <h1 class='union-logo'>
+                  <div class="union-logo-img"></div>
+                  中国高校网球联盟
+                  <small>致力于各大高校网球交流、学习和服务，统一平台，独立管理，活动赛事一步到位。</small>
+             </h1>
+              
+          </div>
+   
+		<div class='row'>
+            <div class='col-md-2 col-xs-4'>
+                <select  id="provinceList" value="{$currentProvinceId}" class="select-block mbl" tabindex="1" name="herolist" onchange="queryCity(this);">
+                    <volist name="provinceList" id="province">
+                        <if condition='$currentProvinceId eq $province[province_id]'>
+                        	<option value="{$province.province_id}" selected>{$province.province_name}</option>
+                        <else/>
+                            <option value="{$province.province_id}">{$province.province_name}</option>
+                        </if>
+                    </volist>
+               </select>
+            </div>
+            <div class='col-md-2 col-xs-4'>
+                <select id="cityList" value="{$currentCityId}" class="select-block mbl" tabindex="1" name="herolist">
+                    <volist name="cityList" id="city">
+                        <if condition='$currentCityId eq $city[city_id]'>
+                        	<option value="{$city.city_id}" selected>{$city.city_name}</option>
+                        <else/>
+                            <option value="{$city.city_id}">{$city.city_name}</option>
+                        </if>
+                    </volist>
+               </select>
+            </div>
+            <button class="btn btn-info" onclick="queryClub()">查询</button>
+        </div>
+          <div class="thumbnail row" style="display:block">
+              <h4>{$waiting}</h4>
+            <volist name="clubList" id="club">
+                <div class="col-xs-4 col-md-3" style="float:left;">
+                    <div class="thumbnail" style="background-color: #D9DDEB;border: 4px solid #14ADF5;">
+                        <a href="__APP__/Index/index_{$club.id}" style="text-decoration: none;"> <img width="100%" height="auto" src="{$club.portrait}" alt="..."></a>
+                        <div class="caption">
+                            <p>
+                                <a href="__APP__/Index/index_{$club.id}" style="color:#000000;"><center><strong> {$club.name} </strong></center></a>                              
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+             </volist>
+          </div>
+    </div><!-- /.container -->
+      <br/><br/>
+     <div class="container" style="min-width:1100px; max-width:1280px">
+      <footer id="footer" class="row">
+     <div class="col-sm-6">
+         <a href="__APP__/Register/register" class="btn btn-success">快捷注册</a>
+         <p><small>友链：<a href="http://tennis-service.taobao.com" target="_blank"> 高校网球服务平台</a>&nbsp;&middot;&nbsp;<a>客服:15651079096 邮箱:jiazhizhong1990@gmail.com</a></small></p> 
+    	<p><small>&copy; 2014 Company, Inc. &middot; <a href="http://tenniser.sinaapp.com"> 中国高校网球联盟 </a>&nbsp;<a target="_blank" href="http://wpa.qq.com/msgrd?V=3&uin=285835174"><img src="__IMG__/site_qq.jpg" alt="QQ"></a></small> </p>
+      </div>   
+        
+     <div class="col-sm-offset-9">
+         <br/>
+            当前访问量
+         <span class="btn btn-info" style="cursor:none">
+                {$PV}
+            </span>
+            人次
+         <!-- baidu Statistics START -->
+        <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3e1f78a2b3adad3121e7a14aa7a0a74e' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        <!-- baidu Statistics END -->
+         </div>
+	</footer>
+      </div>
+	<script src="__JS__/jquery-1.11.0.min.js"></script>
+    <script src="__JS__/bootstrap.min.js"></script>
+    <script src="__JS__/bootstrap-select.js"></script>
+    <script>
+        $("select").selectpicker({style: 'btn btn-primary', menuStyle: 'dropdown-inverse'});
+    </script>
+          
+	<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"网动青春网球交流学习约球教学服务，一键搞定！","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"1","bdPos":"right","bdTop":"100"},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+	 
+    <script type="text/javascript">
+         
+    	var xmlHttp;
+
+        function GetXmlHttpObject()
+        {
+            var xmlHttp=null;
+            try
+             {
+                 // Firefox, Opera 8.0+, Safari
+                 xmlHttp=new XMLHttpRequest();
+             }
+            catch (e)
+             {
+                 // Internet Explorer
+                 try
+                  {
+                  	xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+                  }
+                 catch (e)
+                  {
+                  	xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+             }
+            return xmlHttp;
+        } 
+        
+        function queryCity(element)
+        {
+            xmlHttp=GetXmlHttpObject();            
+            if (xmlHttp==null)
+            {
+              alert ("Browser does not support HTTP Request");
+              return;
+            } 
+            var url="__APP__/Index/queryCity?id="+element.value;
+            
+            xmlHttp.onreadystatechange=stateChangedForQueryCity; 
+            xmlHttp.open("GET",url,true);
+            xmlHttp.send(null);
+        } 
+        
+        
+        function stateChangedForQueryCity() 
+        { 
+            var data = "";
+            var jObject;
+            if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+             { 
+                 if(xmlHttp.status == 200){  
+                     	jObject = eval('('+xmlHttp.responseText+')'); 
+                        if(jObject.data != -1){
+                            $('#cityList').html(jObject.data);
+                         }else {  
+                            data = "城市列表搜索失败，系统开小差啦，快联系管理员！";
+                            alert(data);
+                    	} 
+                     	
+                    } else {  
+                        data = "城市列表搜索失败，系统开小差啦，快联系管理员！";
+                        alert(data);
+                    } 
+                 
+             } 
+        }
+        
+        function queryClub(){
+            window.location.href = "__APP__/Index/index?fp=1&cityId="+$("#cityList").val();           
+            
+        }
+    </script>
+
+
+	
+
+  </body>
+</html>

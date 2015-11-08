@@ -1,0 +1,286 @@
+<br/>
+    <footer id="footer" class="footer">
+        <p class="pull-right"><small><a href="#" class="btn btn-primary">重返巅峰</a></small></p>
+     <div class="col-sm-6">
+         <a href="__APP__/Register/register">快捷注册</a>
+        <p><small>友链：<a href="http://tennis-service.taobao.com" target="_blank"> 高校网球服务平台</a>&nbsp;&middot;&nbsp;QQ群： 南京工业大学ACE网球社(367961261) &nbsp;</small></p> 
+    	<p><small>&copy; 2014 Company, Inc. &middot; <a href="http://tenniser.sinaapp.com"> 中国高校网球联盟 </a>&nbsp;<a target="_blank" href="http://wpa.qq.com/msgrd?V=3&uin=285835174"><img src="__IMG__/site_qq.jpg" alt="QQ"></a></small> </p>
+      </div>   
+        
+     <div class="col-sm-offset-8">
+         <br/>
+            当前访问量
+         <span class="btn btn-info" style="cursor:none">
+                {$PV}
+            </span>
+            人次
+         <!-- baidu Statistics START -->
+        <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3e1f78a2b3adad3121e7a14aa7a0a74e' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        
+        <!-- baidu Statistics END -->
+         </div>
+	</footer>
+
+	<script src="__JS__/jquery-1.11.0.min.js"></script>
+
+     
+    <script src="__JS__/bootstrap.min.js"></script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">登 录</h4>
+          </div>
+          <div class="modal-body">
+              <form class="form-inline" role="form" action="__APP__/Public/logOnSubmit" method="post">
+                  <div class="form-group">
+                    <label class="sr-only" for="exampleInputEmail2">邮箱</label>
+                    <input name="mailbox" type="mailbox" class="form-control" id="exampleInputEmail2" placeholder="登录邮箱">
+                  </div>
+                  <div class="form-group" id="passwordDiv">
+                    <label class="sr-only" for="exampleInputPassword2">密码</label>
+                    <input name="password" type="password" class="form-control" id="exampleInputPassword2" placeholder="密码">
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                        <input name="remember" type="checkbox" value='1'> 记住我
+                    </label>
+                  </div>
+                  <button id="submit" type="submit" class="btn btn-primary pull-right"> 立 即 登 陆 </button>
+                  <div class="form-group col-sm-offset-8">                  
+                      <span><a href="__APP__/Public/getBackPassword"> 找回密码 </a></span>
+                  </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+	<!-- Modal -->
+    <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">意见反馈</h4>
+          </div>
+          <div class="modal-body">
+              <form class="form-horizontal" role="form" action="__APP__/Public/adviceSubmit" method="post">
+                  <div class="form-group">
+                    <input name="title" class="form-control" placeholder="主题" required>
+                  </div>
+                  <div class="form-group">
+                      <textarea name="content"  cols=40 rows=10 class="form-control" placeholder="内容" required></textarea>
+                  </div>
+                  <span>感谢您对我们的支持和鼓励！</span>
+                  <button id="submit" type="submit" class="btn btn-primary pull-right"> 提交 </button>
+            </form>
+          </div>
+          <div class="modal-footer">
+              <a href="http://wpa.qq.com/msgrd?V=3&uin=285835174">在线反馈（一经采纳，给予50经验加成和100积分的奖励）</a>
+                  
+            <button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+<div class="modal fade" id="instructionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="myModalLabel">用户指南</h4>
+          </div>
+          <div class="modal-body">
+            <h4>Welcome</h4>
+              <p>欢迎加入南京工业大学ACE网球社，这里有<strong>详细的网球教学资源，免费的网球教学，悉心的网球服务，丰富的网球活动，方便的网球交流</strong>！这是广大网球爱好者、高校热爱网球的学生朋友们的最佳选择！</p>
+              <p><span class="btn btn-danger"><b>ps:新人快去用户中心完善你的个人资料，方便你找到小伙伴哟！</b></span></p>
+            
+              <br/>
+              <hr/>
+
+            <h4>Instruction</h4>
+              
+              <h4><span class="btn btn-info">【教学】</span></h4>
+              <p>我们提供在线的网球教学资料和视频，可供大家学习和参考，欢迎大家给予评论和建议！同时，我们每周末提供免费的网球教学和练球活动，无论你是新手还是大虾，都可以过来参加活动！
+                  全场网球免费提供，有专门的教学和纠正指导！</p>
+              
+              <h4><span class="btn btn-success">【活动】</span></h4>
+              <p>除了正常的网球教学活动，我们还会不定期地组织<strong>网球交流活动和网球比赛</strong>，并提供奖品予以鼓励！提供不同层次的网球朋友们之间的网球交流与切磋！
+              </p>
+            
+              <h4><span class="btn btn-primary">【服务】</span></h4>
+            <p>提供廉价的<strong>网球拍租赁和免费的网球课陪考服务</strong>，为网球课选课同学保驾护航！</p>
+            <p>提供实惠的高性价<strong>正品网球拍团购和代售服务</strong>，保证品质和售后服务，假一罚十！</p>
+            <p>提供方便的无利润的<strong>网球拍穿线服务</strong>，给您节省宝贵的时间！</p>
+            
+              <h4><span class="btn btn-warning">【约球】</span></h4>
+            <p>我们提供两种约球方式：<strong>临时约球和寻找长期球友</strong>，让您再也不用担心没有小伙伴了，同时活跃的QQ群也方便大家找到同水平的朋友，共同进步！</p>
+            
+              <h4><span class="btn btn-info">【招新】</span></h4>
+            <p>我们需要<strong>热爱网球、志同道合、乐于奉献</strong>的你加入我们，一同努力奋进！锻炼自己，实现自我价值！更重要的是<strong>在我们的圈子里找到给力的小伙伴</strong>，一起练球，共同进步！</p>
+            
+              <h4><span class="btn btn-danger">【积分经验和封禁说明】</span></h4>
+              <p>在网站中登录、签到、观看网球教学资料、参与评论、发帖均可获得积分和经验，以此<strong>鼓励大家学习网球</strong>。为了对发帖进行限制，发约球贴将会扣除相应积分，当然这是为了保证大家在站内活动的平衡！对于恶意发帖，干扰网站运行的用户将予以相应天数的封禁甚至删除！</p>
+          	
+              <h4><span class="btn btn-success">【赞助】</span></h4>
+              <p>欢迎广大商户与我们合作，支持学生网球活动，<strong>互利双赢</strong>！详情请联系贾同学.</p>
+            
+             <hr>
+
+              <h4><span class="btn btn-primary">【积分、经验与称号说明】</span></h4>
+              <center>
+              <table style=" font-size:12px">
+                  <tr>
+                      <td valign="baseline">行为</td>
+                      <td valign="baseline" >积分变化&nbsp;&nbsp;</td>
+                  	  <td valign="baseline">经验变化&nbsp;&nbsp;</td>    
+                  </tr>
+                  <tr>
+                      <td valign="baseline">注册</td>
+                      <td valign="baseline" >+2000</td>
+                  	  <td valign="baseline">+100</td>   
+                  </tr>
+                  <tr>
+                      <td valign="baseline">登录</td>
+                      <td valign="baseline" >+50</td>
+                  	  <td valign="baseline">+15</td>    
+                  </tr>
+                  <tr>
+                      <td valign="baseline">签到</td>
+                      <td valign="baseline" >+20</td>
+                  	  <td valign="baseline">+15</td>    
+                  </tr>
+                  <tr>
+                      <td valign="baseline">长期约球&nbsp;&nbsp;</td>
+                      <td valign="baseline" >-500</td>
+                  	  <td valign="baseline">+50</td>    
+                  </tr>
+                  <tr>
+                      <td valign="baseline">临时约球&nbsp;&nbsp;</td>
+                      <td valign="baseline" >-100</td>
+                  	  <td valign="baseline">+25</td>    
+                  </tr>
+                  <tr>
+                      <td valign="baseline">资源评论&nbsp;&nbsp;</td>
+                      <td valign="baseline" >+40</td>
+                  	  <td valign="baseline">+20</td>    
+                  </tr>
+                  <tr>
+                      <td valign="baseline">约球评论&nbsp;&nbsp;</td>
+                      <td valign="baseline" >+20</td>
+                  	  <td valign="baseline">+20</td>    
+                  </tr>
+              </table>
+                  （注：第一次登陆无积分）
+              </center>
+              
+              <br/>
+              <center>
+              <table style=" font-size:12px">
+                  <tr>
+                      <td valign="baseline">经验值</td>
+                      <td valign="baseline" >称号</td>
+                  </tr>
+                  <tr>
+                      <td valign="baseline">0-500&nbsp;&nbsp;</td>
+                      <td valign="baseline" >网球新人</td>
+                  </tr>
+                  <tr>
+                      <td valign="baseline">500-1000&nbsp;&nbsp;</td>
+                      <td valign="baseline" >巧遇名师</td>
+                  </tr>
+                  <tr>
+                      <td valign="baseline">1000-1500&nbsp;&nbsp;</td>
+                      <td valign="baseline" >勤学苦练</td> 
+                  </tr>
+                  <tr>
+                      <td valign="baseline">1500-2000&nbsp;&nbsp;</td>
+                      <td valign="baseline" >致命正手</td>
+                  </tr>
+                  <tr>
+                      <td valign="baseline">2000-2500&nbsp;&nbsp;</td>
+                      <td valign="baseline" >无敌反手</td>
+                  </tr>
+                  <tr>
+                      <td valign="baseline">2500-3000&nbsp;&nbsp;</td>
+                      <td valign="baseline" >底线称王</td>
+                  </tr>
+                  <tr>
+                      <td valign="baseline">3000-3500&nbsp;&nbsp;</td>
+                      <td valign="baseline" >截杀网前</td>
+                  </tr>
+                  <tr>
+                      <td valign="baseline">3500-4000&nbsp;&nbsp;</td>
+                      <td valign="baseline" >一鸣惊人</td>
+                  </tr>
+              
+                  <tr>
+                      <td valign="baseline">4000-4500&nbsp;&nbsp;</td>
+                      <td valign="baseline" >初涉网坛</td>
+                  </tr>
+                  <tr>
+                      <td valign="baseline">4500-5000&nbsp;&nbsp;</td>
+                      <td valign="baseline" >力克强敌</td>
+                  </tr>
+                  <tr>
+                      <td valign="baseline">5000-5500&nbsp;&nbsp;</td>
+                      <td valign="baseline" >千锤百炼之极限</td> 
+                  </tr>
+                  <tr>
+                      <td valign="baseline">5500-6000&nbsp;&nbsp;</td>
+                      <td valign="baseline" >才气焕发之极限</td>
+                  </tr>
+                  <tr>
+                      <td valign="baseline">6000-6500&nbsp;&nbsp;</td>
+                      <td valign="baseline" >天衣无缝之极限</td>
+                  </tr>
+                  <tr>
+                      <td valign="baseline">6500-7000&nbsp;&nbsp;</td>
+                      <td valign="baseline" >无我境界</td>
+                  </tr>
+                  <tr>
+                      <td valign="baseline">7000-7500&nbsp;&nbsp;</td>
+                      <td valign="baseline" >网坛巅峰</td>
+                  </tr>
+                  <tr>
+                      <td valign="baseline">7500-8000&nbsp;&nbsp;</td>
+                      <td valign="baseline" >网坛传奇</td>
+                  </tr>
+              </table>
+              </center>
+              
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">我知道了</button>
+          </div>
+
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+<!-- JiaThis Button BEGIN >
+<script type="text/javascript" >
+var jiathis_config={
+	summary:"",
+	showClose:false,
+	shortUrl:false,
+	hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?btn=r.gif&move=0" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"南京工业大学ACE网球社网球交流学习约球教学服务，一键搞定！","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"1","bdPos":"right","bdTop":"100"},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>

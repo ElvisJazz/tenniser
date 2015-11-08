@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>都在牆上</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">  
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+    <link href="__CSS__/lightbox.css" rel="stylesheet" />
+ 
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="load(10)">
+    <!-- Carousel
+================================================== img:900*500-->
+   <!--include file="Common:header" /-->
+
+   
+  <div class="container" style="min-width:1100px; max-width:1280px">
+      <include file="Common:header" />
+      <div class="row">
+          <volist name="list" id="item">
+              <div id="item" class="col-sm-3 col-xs-6">
+                <pre><a href="{$item}" data-lightbox="roadtrip" data-title="青春有你"><img class="img-thumbnail" src="{$item}" alt="photo"></a></pre>
+              </div>
+           </volist>
+      </div>
+      <include file="Common:footer" />
+  </div>
+    <script src="__JS__/imagesloaded.pkgd.min.js"></script>
+    <script src="__JS__/masonry.pkgd.min.js"></script>
+    <script>
+      var container = document.querySelector('.row');
+      imagesLoaded(container, function(){
+            var msnry = new Masonry( container, {
+              // options
+              itemSelector: '#item'
+            });
+       });
+     
+      </script>
+	<script src="__JS__/lightbox.min.js"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>有球必应</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="load(5)">
+    <!-- Carousel
+================================================== img:900*500-->
+      <include file="Common:header" />  
+	  
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div id="jiathis_main" class="container" >  
+        <ol class="breadcrumb">
+            <li><a href="__APP__/Mobile/Index/index">首页</a></li>
+            <li><a href="__APP__/Mobile/Invitation/invite_list?type={$type}&pageId=0">约球</a></li> 
+          <li class="active">{$item['title']}</li>
+        </ol>
+        
+        <div class="jumbotron" style="background-color:#3C4138; color:white;">
+            <center><h3>{$item['title']}</h3></center>
+            <if condition="$type eq 1">
+                <table style="font-size:16px">
+                    <tr>
+                        <td width="120" valign="baseline">约球人：</td>
+                        <td valign="baseline">{$item.user}</td>                                 
+                    </tr>
+                    <tr>
+                        <td width="120" valign="baseline">类型：</td>
+                        <td valign="baseline">{$item.type}</td>                                 
+                    </tr>
+                    <tr>
+                        <td width="120" valign="baseline">ntrp要求：</td>
+                        <td valign="baseline">{$item.ntrp}</td>                                 
+                    </tr>
+                    <tr>
+                        <td width="120" valign="baseline">约球时间：</td>
+                        <td valign="baseline">{$item.time}</td>                                 
+                    </tr>
+                    <tr>
+                        <td width="120" valign="baseline">约球地点：</td>
+                        <td valign="baseline">{$item.place}</td>                                 
+                    </tr> 
+                    <tr>
+                        <td width="120" valign="baseline">详情：</td>
+                        <td valign="baseline"><pre style="background-color: #3C4138; color:white; border:0; padding:0;">{$item.content}</pre></td>                                 
+                    </tr> 
+                    <tr>
+                        <td width="120" valign="baseline">发布时间：</td>
+                        <td valign="baseline">{$item.update_date}</td>                                 
+                    </tr> 
+                </table>
+                <a  id="{$item.id}a" href="#" class="btn btn-default" role="button" onclick="goodComment(1, {$item.id});" {$item.disable} ><span id="{$item.id}" class="glyphicon glyphicon-bullhorn" title="响应号召"> {$item.good}</span></a>                                 	
+            	<span style="color:rgb(239, 66, 35)">{$item.tip}</span> 
+                <else/>
+                <table style="font-size:16px">
+                    <tr>
+                        <td width="120" valign="baseline">球友：</td>
+                        <td valign="baseline">{$item.user}</td>                                 
+                    </tr>
+                    <tr>
+                        <td width="120" valign="baseline">ntrp要求：</td>
+                        <td valign="baseline">{$item.ntrp}</td>                                 
+                    </tr>
+                    <tr>
+                        <td width="120" valign="baseline">地点：</td>
+                        <td valign="baseline">{$item.place}</td>                                 
+                    </tr>
+                    <tr>
+                        <td width="120" valign="baseline">详情：</td>
+                        <td valign="baseline"><pre style="background-color: #3C4138; color:white; border:0; padding:0;">{$item.content}</pre></td>                                 
+                    </tr> 
+                     <tr>
+                        <td width="120" valign="baseline">发布时间：</td>
+                        <td valign="baseline">{$item.update_date}</td>                                 
+                    </tr>               
+                    
+                </table>
+                <a  id="{$item.id}a" href="#" class="btn btn-default" role="button" onclick="goodComment(2, {$item.id});" {$item.disable} ><span id="{$item.id}" class="glyphicon glyphicon-thumbs-up" title="此人甚好"> {$item.good}</span></a>                                 	
+            		<span style="color:rgb(239, 66, 35)">{$item.tip}</span> 
+            </if>
+            
+            <br/>
+            <legend>
+                  <h4 style="color:white;"> 约球人资料</h4>
+            </legend>
+            <img src="{$item.portrait}" width="100px" />
+            
+            <if condition="$item.allowinfo eq 1">
+                <table style="font-size:16px">
+                    <tr>
+                        <td width="120" valign="baseline">真实姓名：</td>
+                        <td valign="baseline">{$user.truename}</td>                                 
+                    </tr>
+                    <tr>
+                        <td width="120" valign="baseline">性别：</td>
+                        <td valign="baseline">{$user.sex}</td>                                 
+                    </tr>
+                    <tr>
+                        <td width="120" valign="baseline">手机号：</td>
+                        <td valign="baseline">{$user.telephone}</td>                                 
+                    </tr>
+                    <tr>
+                        <td width="120" valign="baseline">QQ号：</td>
+                        <td valign="baseline">{$user.QQ}</td>                                 
+                    </tr> 
+                    <tr>
+                        <td width="120" valign="baseline">ntrp：</td>
+                        <td valign="baseline">{$user.ntrp}</td>                                 
+                    </tr>                 
+                    <tr>
+                        <td width="120" valign="baseline">每周打球次数：</td>
+                        <td valign="baseline">{$user.frequency}</td>                                 
+                    </tr>
+                    <tr>
+                        <td width="120" valign="baseline">城市：</td>
+                        <td valign="baseline">{$user.city}</td>                                 
+                    </tr> 
+                    <tr>
+                        <td width="120" valign="baseline">高校：</td>
+                        <td valign="baseline">{$user.university}</td>                                 
+                    </tr> 
+                </table>
+                
+             <else/>
+                <p>暂未公布</p>
+            </if>                 
+           
+        </div>
+        
+        <div id="comment_div" class="row">
+            <div class=" col-sm-10">
+                <legend>
+                    <h3 class="btn-success">打网球，找伙伴，人品好，求表扬！</h3>
+                </legend>
+                <form class="form-horizontal" id="edit" role="form" action="__APP__/Invitation/comment" method="post" autocomplete="false"> 
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <textarea class="form-control " name="comment" placeholder="好赞、吐槽、疑问、求教，统统可以~" maxlength=255 required></textarea>
+                        </div>
+                        <input type="hidden" name="id" value="{$id}"/>
+                        <input type="hidden" name="type" value="{$type}"/>
+                        <input type="hidden" name="user_id" value="{$user_id}"/>
+                        
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary">保存</button>
+                        </div>
+                    </div>    
+                   
+                </form> 
+            </div>                
+        </div>
+        
+        <volist name="commentList" id="item">
+            <div class="row">
+                <div id="{$item.reply_id}" class="panel panel-success col-sm-10">
+                    <div class="panel-heading" style="padding:0"><img src="{$item.img}" height="45px" alt="头像"/>&nbsp; &nbsp;{$item.info}<button type="submit"  onclick="showReply(this, {$item.user_id});" class="pull-right btn btn-warning">回复</button></div>
+                    <div class="panel-body">
+                        {$item.comment}
+                    </div>
+                </div>  
+            </div>
+        </volist>
+        
+        <if condition="$num gt 10">
+            <div class="row">
+                <a href="__APP__/Mobile/Invitation/invite_more_comment?type={$type}&title={$user.username}&id={$id}&pageId=0">更多评论{$num}篇</a>
+            </div>
+        </if>
+        <div class="row">
+        <include file="Common:footer" />
+        </div>
+      </div>
+      
+   <!-- Modal -->
+        <div class="modal fade" id="alert"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel"><span class="btn-info">提示</span></h4>
+              </div>
+              <div id="alertTip" class="modal-body">
+                 
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+		
+    
+      
+	<input id="result" type="hidden" value="0" />
+    <input id="id_index" type="hidden" value="0" />
+      
+	<script type="text/javascript">
+          $('#alert').on('hidden.bs.modal', function (e) {
+            if($("#result").val()==0 || $("#result").val()==-1){	
+                return false;
+            }
+            else{                
+             	$("#"+$("#id_index").val()).text($("#result").val());
+                $("#"+$("#id_index").val()+"a").attr("disabled","disabled");                
+            }
+		});
+        
+    	var xmlHttp;
+
+        function GetXmlHttpObject()
+        {
+            var xmlHttp=null;
+            try
+             {
+                 // Firefox, Opera 8.0+, Safari
+                 xmlHttp=new XMLHttpRequest();
+             }
+            catch (e)
+             {
+                 // Internet Explorer
+                 try
+                  {
+                  	xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+                  }
+                 catch (e)
+                  {
+                  	xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+             }
+            return xmlHttp;
+        } 
+        
+       
+        
+        function goodComment(type, id)
+        {
+            xmlHttp=GetXmlHttpObject();
+            if (xmlHttp==null)
+            {
+              alert ("Browser does not support HTTP Request");
+              return;
+            } 
+            var url="__APP__/Mobile/Invitation/invite_comment?type="+type+"&id="+id;
+            $("#id_index").val(id);
+            
+            if(type == 1)
+            	xmlHttp.onreadystatechange=stateChangedForGoodComment1;
+            else
+            	xmlHttp.onreadystatechange=stateChangedForGoodComment2;
+            
+            xmlHttp.open("GET",url,true);
+            xmlHttp.send(null);
+        } 
+        
+       
+        function stateChangedForGoodComment1() 
+        { 
+            if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+             { 
+                 var data = "";
+                if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+             	{ 
+                     if(xmlHttp.status == 200){  
+                            jObject = eval('('+xmlHttp.responseText+')'); 
+                         switch(jObject.data){
+                                 case -1: data="请先登录，再操作！"; $("#result").val(0); break;    
+                                 case 0: data="响应失败！"; $("#result").val(0); break;
+                                 default: data="响应成功，占得先机！请及时联系他(她)哟~"; $("#result").val(" 已响应("+jObject.data+")") ;break;
+                             }                           
+                        } else {  
+                           	data = "系统开小差啦，快联系管理员！";
+                         }   
+                 	
+                    $('#alertTip').text(data);
+                    $('#alert').modal('show'); 
+                 }
+             } 
+        }
+            
+        function stateChangedForGoodComment2() 
+        { 
+            if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+             { 
+                 var data = "";
+                if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+             	{ 
+                     if(xmlHttp.status == 200){  
+                            jObject = eval('('+xmlHttp.responseText+')'); 
+                             switch(jObject.data){
+                                 case -1: data="请先登录，再操作！"; $("#result").val(0); break;    
+                                 case 0: data="小赞失败！"; $("#result").val(0); break;
+                                 default: data="大赞成功！"; $("#result").val(" 已赞("+jObject.data+")") ;break;
+                             }                           
+                        } else {  
+                           	data = "系统开小差啦，快联系管理员！";
+                         }   
+                 	
+                    $('#alertTip').text(data);
+                    $('#alert').modal('show'); 
+                 } 
+            }
+            
+            
+        }
+        
+        function showReply(element, user_id){
+            $html = $("<form class='form-horizontal' id='replyForm' role='form' action='__APP__/Invitation/reply' method='post' autocomplete='false'>"+
+                    "<div class='form-group row'>"+
+                        "<div class='col-sm-10'>"+
+                            "<textarea class='form-control' name='comment' placeholder='回复将会email至他(她)的邮箱' maxlength=240 required></textarea>"+
+                        "</div>"+
+                        "<input type='hidden' name='user_id' value='"+user_id+"'/>"+
+                      "<input type='hidden' name='id' value='{$id}'/>"+
+                      "<input type='hidden' name='type' value='{$type}'/>"+                        
+                        "<div class='col-sm-2'>"+
+                            "<button type='submit' class='btn btn-primary'>提交</button> <button onclick='removeSelf();' class='btn btn-default'>取消</button>"+
+                        "</div>"+
+                    "</div>"+  
+                "</form>");
+            $(element).parent().next().append($html);                        
+            
+        }
+        
+        function removeSelf(){
+        	$('#replyForm').remove();    
+        }
+    </script>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>

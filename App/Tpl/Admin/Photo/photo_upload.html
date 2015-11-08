@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>后台管理</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+</head>
+<body background="__IMG__/court.jpg">
+    <h4 style="color:white">注意:图片上传成功后将无法删除！如要删除请联系超级管理员：贾治中（QQ：285835174）</h4>
+    <div id="pictureUpload" style="width:640px;height:310px;background:#fbfbfb;border:solid 1px #e1e1e1;margin:20px auto;" oncontextmenu="window.event.returnValue=0">
+      <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10,0,0,0" width="640" height="300" id="update" align="middle">
+          <param name="allowFullScreen" value="false" />
+          <param name="allowScriptAccess" value="always" />
+          <param name="movie" value="__PUBLIC__/flash/update.swf" />
+          <param name="quality" value="high" />
+          <param name="bgcolor" value="#ffffff" />
+          <embed src="__PUBLIC__/flash/update.swf" quality="high" bgcolor="#ffffff" width="640" height="300" name="update" align="middle" allowScriptAccess="always" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+      </object>
+    </div>
+    <div id="show" style=" width:640px;line-height:18px;font-size:12px;text-align:left;margin:0 auto;">
+        <h4 style="line-height:30px;font-size:14px;border-bottom:solid 1px #eee;">状态:</h4>
+    </div>
+    <script language="javascript" src="__JS__/update.js"></script>
+</body>
+</html>

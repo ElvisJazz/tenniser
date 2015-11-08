@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>有球必应</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="load(5)">
+    <!-- Carousel
+================================================== img:900*500-->
+      <include file="Common:header" />
+
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+      <div id="jiathis_main" class="container">
+          <legend>
+              <span class="btn btn-info"><h3>有球必应</h3></span>
+        </legend>
+	  <div class="row">
+         <ul class="pagination">
+         <if condition="$type eq 1">
+             <li class="active"><a href="__APP__/Mobile/Invitation/invite_list?type=1&pageId=0">临时约球 <span class="sr-only">(current)</span></a></li>
+                <li><a href="__APP__/Mobile/Invitation/invite_list?type=2&pageId=0">长期求友 <span class="sr-only">(current)</span></a></li>
+                          
+            <else/>
+                
+                    <li><a href="__APP__/Mobile/Invitation/invite_list?type=1&pageId=0">临时约球 <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="__APP__/Mobile/Invitation/invite_list?type=2&pageId=0">长期求友 <span class="sr-only">(current)</span></a></li>
+               
+                
+            </if>
+             &nbsp;<a  href="__APP__/Mobile/Invitation/invite_submit?type={$type}" class="btn btn-warning" role="button" >来一发</a>
+         </ul>    
+                   
+         
+          <div class="form-group col-md-8 col-xs-8">
+              <form class="form-inline" role="form" action="__APP__/Mobile/Invitation/invite_list" method="get">
+                     <div class="form-group">
+                        <label class="sr-only" for="exampleInputEmail2">地点条件</label>
+                         <input name="place" class="form-control" id="exampleInputEmail2" placeholder="地点条件" value="{$place}">
+                      </div>
+                      <div class="form-group">
+                        <label class="sr-only" for="exampleInputPassword2">ntrp条件</label>
+                        <input name="ntrp" class="form-control" id="exampleInputPassword2" placeholder="ntrp条件" value="{$ntrp}">
+                      </div>
+                     <input type="hidden" name="type" value='{$type}'/>
+                  	<input type="hidden" name="pageId" value='0'/>
+                      <button type="submit" class="btn btn-primary" >条件搜索</button>
+                 <a  href="__APP__/Mobile/Invitation/invite_list?type={$type}&pageId=0" class="btn btn-default" role="button" >默认搜索</a>
+                     
+              </form>
+           </div>
+          </div>
+          
+         
+             <div class="row">
+                 <if condition="$exist eq 0">
+                     <center><img width="100%" src="__IMG__/notExist.jpg"  alt="暂无"/></center>
+                     <else/>
+                 <volist name="list" id="item">
+                     <div class="col-xs-12">
+                         <div class="thumbnail">
+                             <a href="__APP__/Mobile/Invitation/invite_detail?type={$type}&id={$item.id}" style="text-decoration: none;"> <img width="80%" height="auto" src="{$item.portrait}" alt="..."></a>
+                             <div class="caption">
+                                 <h4>
+                                     <a href="__APP__/Mobile/Invitation/invite_detail?type={$type}&id={$item.id}" > <span style="color:#005EAC"  class="title-overflow1 " title="{$item.title}" >{$item.title}</span> </a>                              
+                                 </h4>
+                                 
+                                 <if condition="$type eq 1">
+                                     <table style="font-size:12px">
+                                         <tr>
+                                             <td width="63" valign="baseline">约球人：</td>
+                                             <td valign="baseline" title="{$item.user}">{$item.user}</td>
+                                             <td><a href="__APP__/Mobile/Invitation/invite_detail?type={$type}&id={$item.id}#comment_div"><span class="badge btn btn-success" title="评论条数">{$item.numOfComment}</span></a></td>
+                                         </tr>
+                                         <tr>
+                                             <td width="63" valign="baseline">类型：</td>
+                                             <td valign="baseline">{$item.type}</td>                                 
+                                         </tr>
+                                         <tr>
+                                             <td width="63" valign="baseline">ntrp要求：</td>
+                                             <td valign="baseline">{$item.ntrp}</td>                                 
+                                         </tr>
+                                         <tr>
+                                             <td width="63" valign="baseline">约球时间：</td>
+                                             <td valign="baseline">{$item.time}</td>                                 
+                                         </tr>
+                                         <tr>
+                                             <td width="63" valign="baseline">约球地点：</td>
+                                             <td valign="baseline"><span class="text-overflow1" title="{$item.place}">{$item.place}</span></td>                                 
+                                         </tr>                                         
+                                     </table>
+                                     <a  id="{$item.id}a" href="#" class="btn btn-default" role="button" onclick="goodComment(1, {$item.id});" {$item.disable} ><span id="{$item.id}" class="glyphicon glyphicon-bullhorn" title="响应号召"> {$item.good}</span></a> 
+                                     
+                                     <span style="color:rgb(239, 66, 35)">{$item.tip}</span> 
+                                 <else/>
+                                     <table style="font-size:12px">
+                                         <tr>
+                                             <td width="63" valign="baseline">球友：</td>
+                                             <td valign="baseline" title="{$item.user}">{$item.user}</td>  
+                                             <td><a href="__APP__/Mobile/Invitation/invite_detail?type={$type}&id={$item.id}#comment_div"><span class="badge btn btn-success" title="评论条数">{$item.numOfComment}</span></a></td>
+                                         </tr>
+                                          <tr>
+                                             <td width="63" valign="baseline">ntrp要求：</td>
+                                             <td valign="baseline">{$item.ntrp}</td>                                 
+                                         </tr>
+                                         <tr>
+                                             <td width="63" valign="baseline">地点：</td>
+                                             <td valign="baseline"><span class="text-overflow1 " title="{$item.place}">{$item.place}</span></td>                                 
+                                         </tr>
+                                        
+                                     </table>
+                                     <a id="{$item.id}a"  href="#" class="btn btn-default" role="button" onclick="goodComment(2, {$item.id});" {$item.disable} ><span id="{$item.id}" class="glyphicon glyphicon-thumbs-up" title="此人甚好"> {$item.good}</span></a>  
+                                     
+                                 </if>
+                                 
+                              
+                             </div>
+                         </div>
+                     </div>
+                 </volist>
+                 </if>
+            </div> 
+             
+          <div class="row">
+             <ul class="pager">
+                 <if condition="$pageId eq $pageId1">
+                     <li class="previous"><a style="margin-top:20px"  href="#">&larr; Older</a></li>
+                     <else/>
+                 <li class="previous"><a style="margin-top:20px"  href="__APP__/Mobile/Invitation/invite_list?type={$type}&pageId={$pageId1}{$condition}">&larr; Older</a></li>
+                 </if>
+                 <li class="center"><a style="margin-top:20px" href="#">{$page}</a></li>                 
+                 <if condition="$pageId eq $pageId2">
+                 <li class="next"><a style="margin-top:20px" href="#">Newer &rarr;</a></li>
+                     <else/>
+                      <li class="next"><a style="margin-top:20px" href="__APP__/Mobile/Invitation/invite_list?type={$type}&pageId={$pageId2}{$condition}">Newer &rarr;</a></li>
+                 </if>
+             </ul>
+         </div>
+               
+       
+         <div class="row">
+             <legend><h4>推荐球友 </h4></legend>
+                 <volist name="topList" id="item">
+                     <div class=" col-xs-12">
+                     <div class="thumbnail">
+                         <a href="__APP__/Mobile/Invitation/invite_detail?type={$type}&id={$item.id}" style="text-decoration: none;"> 
+                             <div class="caption">
+                                 <h4 style="color:#005EAC" class="title-overflow1 " title="{$item.title}">{$item.title}</h4>                           
+                             </div>
+                             <img src="{$item.portrait}" style="width:80%" alt="...">
+                             <div class="caption">                             
+                                 <table style="font-size:12px">
+                                         <tr>
+                                             <td width="63" valign="baseline">球友：</td>
+                                             <td valign="baseline" title="{$item.username}">{$item.username}</td>                                 
+                                         </tr>
+                                         <tr>
+                                             <td width="63" valign="baseline">ntrp要求：</td>
+                                             <td valign="baseline">{$item.ntrp}</td>                                 
+                                         </tr>
+                                         
+                                 </table>                        
+                             </div>
+                         </a>
+                     </div>
+                     </div>
+                 </volist>
+             
+             </div>
+              
+          
+      
+      <!-- FOOTER -->
+	<include file="Common:footer" />
+    </div><!-- /.container -->
+
+      <!-- Modal -->
+        <div class="modal fade" id="alert"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel"><span class="btn-info">提示</span></h4>
+              </div>
+              <div id="alertTip" class="modal-body">
+                 
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+		
+    
+      
+	<input id="result" type="hidden" value="0" />
+    <input id="id_index" type="hidden" value="0" />
+      
+	<script type="text/javascript">
+          $('#alert').on('hidden.bs.modal', function (e) {
+            if($("#result").val()==0 || $("#result").val()==-1){	
+                return false;
+            }
+            else{                
+             	$("#"+$("#id_index").val()).text($("#result").val());
+                $("#"+$("#id_index").val()+"a").attr("disabled","disabled");                
+            }
+		});
+        
+    	var xmlHttp;
+
+        function GetXmlHttpObject()
+        {
+            var xmlHttp=null;
+            try
+             {
+                 // Firefox, Opera 8.0+, Safari
+                 xmlHttp=new XMLHttpRequest();
+             }
+            catch (e)
+             {
+                 // Internet Explorer
+                 try
+                  {
+                  	xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+                  }
+                 catch (e)
+                  {
+                  	xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+             }
+            return xmlHttp;
+        } 
+        
+       
+        
+        function goodComment(type, id)
+        {
+            xmlHttp=GetXmlHttpObject();
+            if (xmlHttp==null)
+            {
+              alert ("Browser does not support HTTP Request");
+              return;
+            } 
+            var url="__APP__/Mobile/Invitation/invite_comment?type="+type+"&id="+id;
+            $("#id_index").val(id);
+            
+            if(type == 1)
+            	xmlHttp.onreadystatechange=stateChangedForGoodComment1;
+            else
+            	xmlHttp.onreadystatechange=stateChangedForGoodComment2;
+            
+            xmlHttp.open("GET",url,true);
+            xmlHttp.send(null);
+        } 
+        
+       
+        function stateChangedForGoodComment1() 
+        { 
+            if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+             { 
+                 var data = "";
+                if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+             	{ 
+                     if(xmlHttp.status == 200){  
+                            jObject = eval('('+xmlHttp.responseText+')'); 
+                         switch(jObject.data){
+                                 case -1: data="请先登录，再操作！"; $("#result").val(0); break;    
+                                 case 0: data="响应失败！"; $("#result").val(0); break;
+                                 default: data="响应成功，占得先机！请及时联系他(她)哟~"; $("#result").val(" 已响应("+jObject.data+")") ;break;
+                             }                           
+                        } else {  
+                           	data = "系统开小差啦，快联系管理员！";
+                         }   
+                 	
+                    $('#alertTip').text(data);
+                    $('#alert').modal('show'); 
+                 }
+             } 
+        }
+            
+        function stateChangedForGoodComment2() 
+        { 
+            if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+             { 
+                 var data = "";
+                if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+             	{ 
+                     if(xmlHttp.status == 200){  
+                            jObject = eval('('+xmlHttp.responseText+')'); 
+                             switch(jObject.data){
+                                 case -1: data="请先登录，再操作！"; $("#result").val(0); break;    
+                                 case 0: data="小赞失败！"; $("#result").val(0); break;
+                                 default: data="大赞成功！"; $("#result").val(" 已赞("+jObject.data+")") ;break;
+                             }                           
+                        } else {  
+                           	data = "系统开小差啦，快联系管理员！";
+                         }   
+                 	
+                    $('#alertTip').text(data);
+                    $('#alert').modal('show'); 
+                 } 
+            }
+            
+            
+        }
+    </script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>

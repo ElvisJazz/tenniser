@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>网动青春教练教学预约</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+    
+    <link href="__CSS__/lightbox.css" rel="stylesheet" />
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body>
+    <!-- Carousel
+================================================== img:900*500-->
+      <include file="Common:header" />
+
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+      <div class="container" style="min-width:1100px; max-width:1280px">
+		<legend>
+        	<h3>教学预约</h3>
+        </legend>
+            <div class="row">
+        	<div class="panel panel-danger">
+                    <div class="col-sm-12 panel-heading">
+                        <span class="col-sm-5">教学日期及时间段</span>
+                        <span class="col-sm-7">备注</span>
+                     </div>
+                </div>
+			<volist name="list" id="item">
+                <div class="col-sm-12 panel panel-info">
+                    <div class="row panel-heading">
+                        <span class="col-sm-5"><a href="__APP__/Coach/appointment?id={$item.id}&type=1">【{$item.date}】 {$item.time_field}</a></span>
+                        <span class="col-sm-7">{$item.tip}</span>
+                    </div>
+                </div>
+            </volist>    
+        </div>
+		
+      <!-- FOOTER -->
+        <include file="Common:footer" />
+
+    </div><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>

@@ -1,0 +1,93 @@
+<table>
+<tr>
+<td><span id='A1_span' class='label label-primary'>{$players.A1}(A1)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><span id='B1_span' class='label label-info'>{$players.B1}(B1)</span></td>
+</tr>
+<tr>
+<td></td>
+<td><a href='javascript:void(0)' class='match-block' data-toggle='modal' data-target='#editGroupMatch' onclick="if({$players.enable}==1){ $('#groupMatchForm').attr('action','__APP__/Admin/Match/groupSerialMatch_update_submit?id={$players_vs_item.MA11.id}&serialMatchId={$id}'); $('#groupMatchVS').text('{$players_vs_item.MA11.player1} VS {$players_vs_item.MA11.player2}'); $('#groupMatchWinner').val('{$players_vs_item.MA11.winner_id}'); $('#groupMatchOp1').val('{$players_vs_item.MA11.player1_id}');$('#groupMatchOp2').val('{$players_vs_item.MA11.player2_id}'); $('#groupMatchOp1').text('{$players_vs_item.MA11.player1}');$('#groupMatchOp2').text('{$players_vs_item.MA11.player2}'); $('#groupMatchWinner').val('{$players_vs_item.MA11.winner_id}'); $('#groupMatchStartDate').val('{$players_vs_item.MA11.start_date}'); $('#groupMatchEndDate').val('{$players_vs_item.MA11.end_date}'); $('#groupMatchStartDate0').val('{$players_vs_item.MA11.start_date}'); $('#groupMatchEndDate0').val('{$players_vs_item.MA11.end_date}'); if({$players_vs_item.MA11.stateValue} == 0) { $('#groupMatchState').val('0');} else if({$players_vs_item.MA11.stateValue} == 1){ $('#groupMatchState').val('1');} $('#groupMatchScore').val('{$players_vs_item.MA11.score}'); $('#groupMatchOffset').val('{$players_vs_item.MA11.offset}'); $('#groupMatchRound1').val('{$players_vs_item.MA11.round1}'); $('#groupMatchRound2').val('{$players_vs_item.MA11.round2}'); $('#groupMatchPlayer1_id').val('{$players_vs_item.MA11.player1_id}'); $('#groupMatchPlayer2_id').val('{$players_vs_item.MA11.player2_id}'); $('#matchType').val('1');$('#next_id').val('{$players_vs_item.MA21.id}'); $('#noPos').val('0'); }"><span title='{$players.MA11}' class='glyphicon glyphicon-circle-arrow-right'></span></a></td>
+<td><span class='label label-primary'>{$players.A21}</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class='label label-info'>{$players.B21}</span></td>
+<td><a href='javascript:void(0)' class='match-block' data-toggle='modal' data-target='#editGroupMatch' onclick="if({$players.enable}==1){ $('#groupMatchForm').attr('action','__APP__/Admin/Match/groupSerialMatch_update_submit?id={$players_vs_item.MB11.id}&serialMatchId={$id}'); $('#groupMatchVS').text('{$players_vs_item.MB11.player1} VS {$players_vs_item.MB11.player2}'); $('#groupMatchWinner').val('{$players_vs_item.MB11.winner_id}'); $('#groupMatchOp1').val('{$players_vs_item.MB11.player1_id}');$('#groupMatchOp2').val('{$players_vs_item.MB11.player2_id}'); $('#groupMatchOp1').text('{$players_vs_item.MB11.player1}');$('#groupMatchOp2').text('{$players_vs_item.MB11.player2}'); $('#groupMatchWinner').val('{$players_vs_item.MB11.winner_id}'); $('#groupMatchStartDate').val('{$players_vs_item.MB11.start_date}'); $('#groupMatchEndDate').val('{$players_vs_item.MB11.end_date}'); $('#groupMatchStartDate0').val('{$players_vs_item.MB11.start_date}'); $('#groupMatchEndDate0').val('{$players_vs_item.MB11.end_date}'); if({$players_vs_item.MB11.stateValue} == 0) { $('#groupMatchState').val('0');} else if({$players_vs_item.MB11.stateValue} == 1){ $('#groupMatchState').val('1');} $('#groupMatchScore').val('{$players_vs_item.MB11.score}'); $('#groupMatchOffset').val('{$players_vs_item.MB11.offset}'); $('#groupMatchRound1').val('{$players_vs_item.MB11.round1}'); $('#groupMatchRound2').val('{$players_vs_item.MB11.round2}'); $('#groupMatchPlayer1_id').val('{$players_vs_item.MB11.player1_id}'); $('#groupMatchPlayer2_id').val('{$players_vs_item.MB11.player2_id}'); $('#matchType').val('1'); $('#next_id').val('{$players_vs_item.MB21.id}'); $('#noPos').val('0'); }"><span title='{$players.MB11}' class='glyphicon glyphicon-circle-arrow-left'></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td><span id='A2_span' class='label label-primary'>{$players.A2}(A2)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class='label winner-color'>{$players.W}</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><span id='B2_span' class='label label-info'>{$players.B2}(B2)</span></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><a href='javascript:void(0)' class='match-block' data-toggle='modal' data-target='#editGroupMatch' onclick="if({$players.enable}==1){ $('#groupMatchForm').attr('action','__APP__/Admin/Match/groupSerialMatch_update_submit?id={$players_vs_item.MA21.id}&serialMatchId={$id}'); $('#groupMatchVS').text('{$players_vs_item.MA21.player1} VS {$players_vs_item.MA21.player2}'); $('#groupMatchWinner').val('{$players_vs_item.MA21.winner_id}'); $('#groupMatchOp1').val('{$players_vs_item.MA21.player1_id}');$('#groupMatchOp2').val('{$players_vs_item.MA21.player2_id}'); $('#groupMatchOp1').text('{$players_vs_item.MA21.player1}');$('#groupMatchOp2').text('{$players_vs_item.MA21.player2}'); $('#groupMatchWinner').val('{$players_vs_item.MA21.winner_id}'); $('#groupMatchStartDate').val('{$players_vs_item.MA21.start_date}'); $('#groupMatchEndDate').val('{$players_vs_item.MA21.end_date}'); $('#groupMatchStartDate0').val('{$players_vs_item.MA21.start_date}'); $('#groupMatchEndDate0').val('{$players_vs_item.MA21.end_date}'); if({$players_vs_item.MA21.stateValue} == 0) { $('#groupMatchState').val('0');} else if({$players_vs_item.MA21.stateValue} == 1){ $('#groupMatchState').val('1');} $('#groupMatchScore').val('{$players_vs_item.MA21.score}'); $('#groupMatchOffset').val('{$players_vs_item.MA21.offset}'); $('#groupMatchRound1').val('{$players_vs_item.MA21.round1}'); $('#groupMatchRound2').val('{$players_vs_item.MA21.round2}'); $('#groupMatchPlayer1_id').val('{$players_vs_item.MA21.player1_id}'); $('#groupMatchPlayer2_id').val('{$players_vs_item.MA21.player2_id}'); $('#matchType').val('1');$('#next_id').val('{$players_vs_item.MS31.id}'); $('#noPos').val('1'); }"><span title='{$players.MA21}' class='glyphicon glyphicon-circle-arrow-right'></span></a></td>
+<td><span class='label winner-color'>{$players.S31}</span></td>
+<td align='center'><a href='javascript:void(0)' style='color:red;' data-toggle='modal'  data-target='#editGroupMatch' onclick="if({$players.enable}==1){ $('#groupMatchForm').attr('action','__APP__/Admin/Match/groupSerialMatch_update_submit?id={$players_vs_item.MS31.id}&serialMatchId={$id}'); $('#groupMatchVS').text('{$players_vs_item.MS31.player1} VS {$players_vs_item.MS31.player2}'); $('#groupMatchWinner').val('{$players_vs_item.MS31.winner_id}'); $('#groupMatchOp1').val('{$players_vs_item.MS31.player1_id}');$('#groupMatchOp2').val('{$players_vs_item.MS31.player2_id}'); $('#groupMatchOp1').text('{$players_vs_item.MS31.player1}');$('#groupMatchOp2').text('{$players_vs_item.MS31.player2}'); $('#groupMatchWinner').val('{$players_vs_item.MS31.winner_id}'); $('#groupMatchStartDate').val('{$players_vs_item.MS31.start_date}'); $('#groupMatchEndDate').val('{$players_vs_item.MS31.end_date}'); $('#groupMatchStartDate0').val('{$players_vs_item.MS31.start_date}'); $('#groupMatchEndDate0').val('{$players_vs_item.MS31.end_date}'); if({$players_vs_item.MS31.stateValue} == 0) { $('#groupMatchState').val('0');} else if({$players_vs_item.MS31.stateValue} == 1){ $('#groupMatchState').val('1');} $('#groupMatchScore').val('{$players_vs_item.MS31.score}'); $('#groupMatchOffset').val('{$players_vs_item.MS31.offset}'); $('#groupMatchRound1').val('{$players_vs_item.MS31.round1}'); $('#groupMatchRound2').val('{$players_vs_item.MS31.round2}'); $('#groupMatchPlayer1_id').val('{$players_vs_item.MS31.player1_id}'); $('#groupMatchPlayer2_id').val('{$players_vs_item.MS31.player2_id}'); $('#matchType').val('1');$('#next_id').val('{$players_vs_item..id}');$('#noPos').val('0'); }"><span title='{$players.MS31}' class='glyphicon glyphicon-star'></span></a></td>
+<td><span class='label winner-color'>{$players.S32}</span></td>
+<td><a href='javascript:void(0)' class='match-block' data-toggle='modal' data-target='#editGroupMatch' onclick="if({$players.enable}==1){ $('#groupMatchForm').attr('action','__APP__/Admin/Match/groupSerialMatch_update_submit?id={$players_vs_item.MB21.id}&serialMatchId={$id}'); $('#groupMatchVS').text('{$players_vs_item.MB21.player1} VS {$players_vs_item.MB21.player2}'); $('#groupMatchWinner').val('{$players_vs_item.MB21.winner_id}'); $('#groupMatchOp1').val('{$players_vs_item.MB21.player1_id}');$('#groupMatchOp2').val('{$players_vs_item.MB21.player2_id}'); $('#groupMatchOp1').text('{$players_vs_item.MB21.player1}');$('#groupMatchOp2').text('{$players_vs_item.MB21.player2}'); $('#groupMatchWinner').val('{$players_vs_item.MB21.winner_id}'); $('#groupMatchStartDate').val('{$players_vs_item.MB21.start_date}'); $('#groupMatchEndDate').val('{$players_vs_item.MB21.end_date}'); $('#groupMatchStartDate0').val('{$players_vs_item.MB21.start_date}'); $('#groupMatchEndDate0').val('{$players_vs_item.MB21.end_date}'); if({$players_vs_item.MB21.stateValue} == 0) { $('#groupMatchState').val('0');} else if({$players_vs_item.MB21.stateValue} == 1){ $('#groupMatchState').val('1');} $('#groupMatchScore').val('{$players_vs_item.MB21.score}'); $('#groupMatchOffset').val('{$players_vs_item.MB21.offset}'); $('#groupMatchRound1').val('{$players_vs_item.MB21.round1}'); $('#groupMatchRound2').val('{$players_vs_item.MB21.round2}'); $('#groupMatchPlayer1_id').val('{$players_vs_item.MB21.player1_id}'); $('#groupMatchPlayer2_id').val('{$players_vs_item.MB21.player2_id}'); $('#matchType').val('1'); $('#next_id').val('{$players_vs_item.MS31.id}'); $('#noPos').val('2'); }"><span title='{$players.MB21}' class='glyphicon glyphicon-circle-arrow-left'></span></a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span id='A3_span' class='label label-primary'>{$players.A3}(A3)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><span id='B3_span' class='label label-info'>{$players.B3}(B3)</span></td>
+</tr>
+<tr>
+<td></td>
+<td><a href='javascript:void(0)' class='match-block' data-toggle='modal' data-target='#editGroupMatch' onclick="if({$players.enable}==1){ $('#groupMatchForm').attr('action','__APP__/Admin/Match/groupSerialMatch_update_submit?id={$players_vs_item.MA12.id}&serialMatchId={$id}'); $('#groupMatchVS').text('{$players_vs_item.MA12.player1} VS {$players_vs_item.MA12.player2}'); $('#groupMatchWinner').val('{$players_vs_item.MA12.winner_id}'); $('#groupMatchOp1').val('{$players_vs_item.MA12.player1_id}');$('#groupMatchOp2').val('{$players_vs_item.MA12.player2_id}'); $('#groupMatchOp1').text('{$players_vs_item.MA12.player1}');$('#groupMatchOp2').text('{$players_vs_item.MA12.player2}'); $('#groupMatchWinner').val('{$players_vs_item.MA12.winner_id}'); $('#groupMatchStartDate').val('{$players_vs_item.MA12.start_date}'); $('#groupMatchEndDate').val('{$players_vs_item.MA12.end_date}'); $('#groupMatchStartDate0').val('{$players_vs_item.MA12.start_date}'); $('#groupMatchEndDate0').val('{$players_vs_item.MA12.end_date}'); if({$players_vs_item.MA12.stateValue} == 0) { $('#groupMatchState').val('0');} else if({$players_vs_item.MA12.stateValue} == 1){ $('#groupMatchState').val('1');} $('#groupMatchScore').val('{$players_vs_item.MA12.score}'); $('#groupMatchOffset').val('{$players_vs_item.MA12.offset}'); $('#groupMatchRound1').val('{$players_vs_item.MA12.round1}'); $('#groupMatchRound2').val('{$players_vs_item.MA12.round2}'); $('#groupMatchPlayer1_id').val('{$players_vs_item.MA12.player1_id}'); $('#groupMatchPlayer2_id').val('{$players_vs_item.MA12.player2_id}'); $('#matchType').val('1');$('#next_id').val('{$players_vs_item.MA21.id}'); $('#noPos').val('0'); }"><span title='{$players.MA12}' class='glyphicon glyphicon-circle-arrow-right'></span></a></td>
+<td><span class='label label-primary'>{$players.A22}</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class='label label-info'>{$players.B22}</span></td>
+<td><a href='javascript:void(0)' class='match-block' data-toggle='modal' data-target='#editGroupMatch' onclick="if({$players.enable}==1){ $('#groupMatchForm').attr('action','__APP__/Admin/Match/groupSerialMatch_update_submit?id={$players_vs_item.MB12.id}&serialMatchId={$id}'); $('#groupMatchVS').text('{$players_vs_item.MB12.player1} VS {$players_vs_item.MB12.player2}'); $('#groupMatchWinner').val('{$players_vs_item.MB12.winner_id}'); $('#groupMatchOp1').val('{$players_vs_item.MB12.player1_id}');$('#groupMatchOp2').val('{$players_vs_item.MB12.player2_id}'); $('#groupMatchOp1').text('{$players_vs_item.MB12.player1}');$('#groupMatchOp2').text('{$players_vs_item.MB12.player2}'); $('#groupMatchWinner').val('{$players_vs_item.MB12.winner_id}'); $('#groupMatchStartDate').val('{$players_vs_item.MB12.start_date}'); $('#groupMatchEndDate').val('{$players_vs_item.MB12.end_date}'); $('#groupMatchStartDate0').val('{$players_vs_item.MB12.start_date}'); $('#groupMatchEndDate0').val('{$players_vs_item.MB12.end_date}'); if({$players_vs_item.MB12.stateValue} == 0) { $('#groupMatchState').val('0');} else if({$players_vs_item.MB12.stateValue} == 1){ $('#groupMatchState').val('1');} $('#groupMatchScore').val('{$players_vs_item.MB12.score}'); $('#groupMatchOffset').val('{$players_vs_item.MB12.offset}'); $('#groupMatchRound1').val('{$players_vs_item.MB12.round1}'); $('#groupMatchRound2').val('{$players_vs_item.MB12.round2}'); $('#groupMatchPlayer1_id').val('{$players_vs_item.MB12.player1_id}'); $('#groupMatchPlayer2_id').val('{$players_vs_item.MB12.player2_id}'); $('#matchType').val('1'); $('#next_id').val('{$players_vs_item.MB21.id}'); $('#noPos').val('0'); }"><span title='{$players.MB12}' class='glyphicon glyphicon-circle-arrow-left'></span></a></td>
+<td></td>
+</tr>
+<tr>
+<td><span id='A4_span' class='label label-primary'>{$players.A4}(A4)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><span id='B4_span' class='label label-info'>{$players.B4}(B4)</span></td>
+</tr>
+</table>

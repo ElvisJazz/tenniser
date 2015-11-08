@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>后台管理</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="load(3)">
+    <!-- Carousel
+================================================== img:900*500-->
+    <include file="Common:header" />
+	
+
+    <div class="container">
+        <legend>
+            <h3>约球模块后台管理</h3>
+        </legend>
+        
+     <div class="row">
+       		
+       		
+        <div class="col-sm-offset-2 col-sm-8 ">            
+            
+            <volist name="commentList" id="item">
+            <div class="row">
+                <div class="panel panel-success">
+                    <div class="panel-heading" style="padding:0">{$item.info}<a href="#" style="float:right" data-toggle="modal" data-target="#alertModal" onclick="$('#type').val({$type});$('#id').val({$item.id});$('#pageId').val({$pageId});"><span class="col-xs-1 col-md-1 glyphicon glyphicon-remove" title="删除"></span></a></div>
+                    <div class="panel-body">
+                        {$item.comment}
+                    </div>
+                </div>  
+                </div>
+            </volist>
+            
+            <input type="hidden" id="id" value=""/>
+            <input type="hidden" id="pageId" value=""/>
+            <input type="hidden" id="type" value=""/>
+            
+            
+         </div>
+        </div>    
+         <div class="row col-sm-offset-2 col-sm-8 ">
+            <ul class="pager">
+                <if condition="$pageId eq $pageId1">
+                <li class="previous"><a style="margin-top:20px"  href="#">&larr; Older</a></li> 
+                    <else/>
+                    <li class="previous"><a style="margin-top:20px"  href="__APP__/Admin/Invitation/invite_comment_list?id={$id}&type={$type}&pageId={$pageId1}">&larr; Older</a></li>
+                </if>
+                <li class="center"><a style="margin-top:20px" href="#">{$page}</a></li>
+                <if condition="$pageId eq $pageId2">
+                <li class="next"><a style="margin-top:20px" href="#">Newer &rarr;</a></li>
+                    <else/>
+                    <li class="next"><a style="margin-top:20px" href="__APP__/Admin/Invitation/invite_comment_list?id={$id}&type={$type}&pageId={$pageId2}">Newer &rarr;</a></li>
+                </if>
+                
+            </ul>
+         </div>
+        
+        <div class="row col-sm-12">
+			<include file="Common:footer" />
+        
+        </div>
+				 <!-- Modal -->
+		<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">警 告</h4>
+		      </div>
+		      <div class="modal-body">
+		        是否确定删除？该操作不可逆哦！
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		        <button type="button" class="btn btn-primary" onclick="deleteRecord();">确定</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+    </div><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript">
+        function deleteRecord(){
+            var url = "__APP__/Admin/Invitation/delete_comment?invitation_id={$id}&type="+$('#type').val()+"&id="+$('#id').val()+"&pageId="+$('#pageId').val();    
+            location = url;
+        }
+    </script>
+	<script src="__JS__/sidebar.js"></script>
+  </body>
+  
+</html>

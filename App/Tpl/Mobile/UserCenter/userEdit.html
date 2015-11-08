@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>网球人类</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body>
+    <!-- Carousel
+================================================== img:900*500-->
+      <include file="Common:header" />
+
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+      
+    
+    
+      <div class="container" id="userInfo">
+    
+    <legend>
+        <span class="btn btn-info"> <h3>信息编辑</h3></span>
+    </legend>
+	<form class="form-horizontal" id="edit" role="form" action="__APP__/Mobile/Public/userInfoSubmit" method="post" autocomplete="false"> 
+        <input type="hidden" name="id" value="{$user.id}"/>
+        <div class="form-group row">
+            <span class="label label-success col-sm-offset-2 col-sm-1 control-span">用户名</span>
+            
+            <div class="col-sm-4">
+                <input class="form-control col-sm-10" name="username" value='{$user.username}' maxlength=20 required/>
+            </div>
+            <div class="col-sm-4 help-block">
+                        <span>长度小于20</span>
+            </div>
+           
+        </div> 
+        <input type="hidden" name="id" value="{$user.id}"/>
+        <div class="form-group row">
+            <span class="label label-success col-sm-offset-2 col-sm-1 control-span">真实姓名</span>
+            
+            <div class="col-sm-4">
+                <input class="form-control col-sm-10" name="truename" value='{$user.truename}' maxlength=20 required/>
+            </div>
+            <div class="col-sm-4 help-block">
+                        <span>长度小于20</span>
+            </div>
+           
+        </div> 
+        <div class="form-group row">
+            <span class="label label-success col-sm-offset-2 col-sm-1 control-span">QQ</span>
+            
+            <div class="col-sm-4">
+                <input class="form-control col-sm-10" name="QQ" value='{$user.QQ}'/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <span class="label label-success col-sm-offset-2 col-sm-1 control-span">手机号</span>
+            
+            <div class="col-sm-4">
+                <input class="form-control col-sm-10" name="telephone" value='{$user.telephone}' maxlength=15/>  
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <span for="name" class="label label-success col-sm-offset-2 col-sm-1 control-span">邮箱</span>
+            
+            <div class="col-sm-4">
+                <input class="form-control col-sm-10" name="mailbox" value='{$user.mailbox}' pattern="^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$" required/>
+            </div>   
+            <div class="col-sm-4 help-block">
+                        <span >可用于密码找回</span>
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <span class="label label-success col-sm-offset-2 col-sm-1 control-span">ntrp</span>
+            
+            <div class="col-sm-4">
+                <input class="form-control col-sm-10" name="ntrp" value='{$user.ntrp}' pattern="([1-6]\.[05]$)|(7\.0$)"/>    
+            </div>
+            <div class="col-sm-4 help-block">
+                <a href="http://baike.baidu.com/link?url=ykju-jXZvkSBNbl7Sfbk871GWhgUBTSiaUdMIMGXXAZbjyCAgvc6IhUC4nNZsxPIe1wN0OQ9N_VNCNXM5vtWYa" target="_blank">what's ntrp ?</a>
+             </div>
+        </div>
+        
+        <div class="form-group row">
+            <span class="label label-success col-sm-offset-2 col-sm-1 control-span">打球频率</span>
+            
+            <div class="col-sm-4">
+                <input class="form-control col-sm-10" name="frequency" value='{$user.frequency}' pattern="[1-7]$" required/>
+            </div>
+            <div class="col-sm-4 help-block">
+                        <span >每周打球次数</span>
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <span class="label label-success col-sm-offset-2 col-sm-1 control-span">所在城市</span>
+            
+            <div class="col-sm-4">
+                <input class="form-control col-sm-10" name="city" value='{$user.city}' maxlength=15/>
+            </div>
+        </div>
+        
+        <div class="form-group row">    
+            <span class="label label-success col-sm-offset-2 col-sm-1 control-span">高校</span>
+            
+            <div class="col-sm-4">
+                <input class="form-control col-sm-10" name="university" value='{$user.university}' maxlength=15/>
+            </div>
+        </div>
+        
+        <div class="form-group row">    
+            <span class="label label-success col-sm-offset-2 col-sm-1 control-span" >密码</span>
+            
+            <div class="col-sm-4">
+                <input id="pwd" type="password" class="form-control col-sm-10" name="password" value='{$user.password}' pattern="^[\w\W]{6,16}$" onchange="checkPasswords()" required/>
+            </div>
+             <div class="col-sm-4 help-block">
+                        <span>6-16位数字、字母组合</span>
+             </div>
+        </div>
+        
+        <div class="form-group row">    
+            <span class="label label-success col-sm-offset-2 col-sm-1 control-span">再密一次</span>
+            
+            <div class="col-sm-4">
+                <input id="pwd1" type="password" class="form-control col-sm-10" value='{$user.password}'pattern="^[\w\W]{6,16}$" onchange="checkPasswords()" required/>
+            </div>
+        </div>
+        <br/><br/>
+         <div class="row form-group">
+            <button type="submit" class="btn btn-primary col-sm-offset-3 col-sm-2">保存</button>
+             <button type="button" class="btn col-sm-2" onclick="location='__APP__/User/userInfo'"> 返回</button>
+        </div>
+	</form>
+
+ <!-- FOOTER -->
+	 <include file="Common:footer" />
+    <script>
+        function checkPasswords() {
+            var passl = document.getElementById("pwd");
+            var pass2 = document.getElementById("pwd1");
+            if (passl.value != pass2.value)
+                passl.setCustomValidity("两次密码必须输入一致！");
+            else
+                passl.setCustomValidity('');
+        }
+       
+         
+            var checkvalue = function(e){
+                var el = e.target;
+                var isvalid = el.checkValidity();
+                if(isvalid){
+                    el.className= "";
+                    el.parentElement.getElementsByTagName("label")[0].className="";
+                }else{
+                    el.className= "error";
+                    el.parentElement.getElementsByTagName("label")[0].className="error";
+                }
+                e.stopPropagation();
+                e.preventDefault();
+            }
+            //定义表单验证方法
+            function invalidHandler(evt) {
+                checkvalue(evt);
+            }
+            function loadDemo() {
+               var myform = document.getElementById("register1");
+               //注册表单的oninvlid事件
+               myform.addEventListener("invalid", invalidHandler, true);
+                for(var i=0;i< myform.elements.length-1;i++){
+                    //注册表单元素的onchange事件，优化用户体验
+                    myform.elements[i].addEventListener("change",checkvalue,false);
+                }
+            }
+            //在页面初始化事件（onload）时注册的自定义事件
+            window.addEventListener("load", loadDemo, false);
+    </script>
+    
+
+</div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+  
+    
+</html>

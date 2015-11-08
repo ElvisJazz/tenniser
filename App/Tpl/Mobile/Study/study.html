@@ -1,0 +1,417 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>必有我师</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="load(2)">
+    <!-- Carousel  id="jiathis_main" style="max-width:1280px"
+================================================== img:900*500-->
+      <include file="Common:header" />
+	
+      <div  class="container"  >  
+               <span class="btn btn-info"><h3>学有所成</h3></span>
+                <div id="t0">
+                        
+                    <legend>
+                   	 <h3>知己知彼 入门须知</h3>
+                    </legend>
+                     <ul class="ulist">
+                        <a  href="__APP__/Mobile/Study/study_detail?type=2&id={$id[0]}"><img width="100%"  src="{$img[0]}"/></a>
+                    </ul>
+                    <ul class="ulist">
+                        <volist name="videoList[0]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=2&id={$item.id}"><span class="glyphicon glyphicon-film"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <volist name="txtList[0]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=1&id={$item.id}"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <li><a href="__APP__/Mobile/Study/study_list?theme=0&type=1&pageId=0" style="color:#3592DD">更多</a></li>                        
+                    </ul>                   
+				</div> 
+                
+                <div id="t1">
+                    <legend>
+                        <br/><br/>
+                    <h3>雷霆万钧 正手击球技术</h3>
+                    </legend>
+                    <ul >
+                        <a  href="__APP__/Mobile/Study/study_detail?type=2&id={$id[1]}"><img width="100%"  src="{$img[1]}"/></a>
+                    </ul>
+                    <ul class="ulist">
+                        <volist name="videoList[1]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=2&id={$item.id}" ><span class="glyphicon glyphicon-film"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <volist name="txtList[1]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=1&id={$item.id}" ><span class="glyphicon glyphicon-list-alt"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <li><a href="__APP__/Mobile/Study/study_list?theme=1&type=1&pageId=0" style="color:#3592DD">更多</a></li>                        
+                    </ul>
+                    
+				</div> 
+                
+                <div id="t2" >
+                    <legend>
+                        <br/><br/>
+                    <h3>倒拔垂杨 反手击球技术</h3>
+                    </legend>
+                    <ul>
+                        <a  href="__APP__/Mobile/Study/study_detail?type=2&id={$id[2]}"><img width="100%"  src="{$img[2]}"/></a>
+                    </ul>
+                    <ul class="ulist">
+                        <volist name="videoList[2]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=2&id={$item.id}" ><span class="glyphicon glyphicon-film"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <volist name="txtList[2]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=1&id={$item.id}" ><span class="glyphicon glyphicon-list-alt"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <li><a href="__APP__/Mobile/Study/study_list?theme=2&type=1&pageId=0"  style="color:#3592DD">更多</a></li>                        
+                    </ul>
+                    
+				</div> 
+                
+                <div id="t3">
+                    <legend>
+                        <br/><br/>
+                    <h3>四两拆千斤 截击技术</h3>
+                    </legend>
+                     <ul>
+                        <a  href="__APP__/Mobile/Study/study_detail?type=2&id={$id[3]}"><img width="100%"  src="{$img[3]}"/></a>
+                    </ul>
+                    <ul class="ulist">
+                        <volist name="videoList[3]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=2&id={$item.id}" ><span class="glyphicon glyphicon-film"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <volist name="txtList[3]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=1&id={$item.id}" ><span class="glyphicon glyphicon-list-alt"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <li><a href="__APP__/Mobile/Study/study_list?theme=3&type=1&pageId=0" style="color:#3592DD">更多</a></li>                        
+                    </ul>
+                   
+				</div> 
+                
+                <div id="t4">
+                    <legend>
+                        <br/><br/>
+                    <h3>挽弓射日 发球技术</h3>
+                    </legend>
+                    <ul>
+                        <a  href="__APP__/Mobile/Study/study_detail?type=2&id={$id[4]}"><img width="100%"  src="{$img[4]}"/></a>
+                    </ul>
+                    <ul class="ulist">
+                        <volist name="videoList[4]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=2&id={$item.id}" ><span class="glyphicon glyphicon-film"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <volist name="txtList[4]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=1&id={$item.id}" ><span class="glyphicon glyphicon-list-alt"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <li><a href="__APP__/Mobile/Study/study_list?theme=4&type=1&pageId=0"  style="color:#3592DD">更多</a></li>                        
+                    </ul>
+                    
+				</div> 
+                
+                <div id="t5">
+                    <legend>
+                        <br/><br/>
+                    <h3>拾级进阶 组合你的技术</h3>
+                    </legend>
+                    <ul >
+                        <a  href="__APP__/Mobile/Study/study_detail?type=2&id={$id[5]}"><img width="100%"  src="{$img[5]}"/></a>
+                    </ul>
+                    <ul class="ulist">
+                        <volist name="videoList[5]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=2&id={$item.id}" ><span class="glyphicon glyphicon-film"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <volist name="txtList[5]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=1&id={$item.id}" ><span class="glyphicon glyphicon-list-alt"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <li><a href="__APP__/Mobile/Study/study_list?theme=5&type=1&pageId=0"  style="color:#3592DD">更多</a></li>                        
+                    </ul>
+                    
+				</div> 
+                
+                <div id="t6">
+                    <legend>
+                        <br/><br/>
+                    <h3>勇中有谋 组合你的战术</h3>
+                    </legend>
+                     <ul >
+                        <a  href="__APP__/Mobile/Study/study_detail?type=2&id={$id[6]}"><img width="100%"  src="{$img[6]}"/></a>
+                    </ul>
+                    <ul class="ulist">
+                        <volist name="videoList[6]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=2&id={$item.id}" ><span class="glyphicon glyphicon-film"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <volist name="txtList[6]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=1&id={$item.id}" ><span class="glyphicon glyphicon-list-alt"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <li><a href="__APP__/Mobile/Study/study_list?theme=6&type=1&pageId=0" style="color:#3592DD">更多</a></li>                        
+                    </ul>
+                   
+				</div> 
+             
+                
+                <div id="t7">
+                    <legend>
+                        <br/><br/>
+                    <h3>网球网事</h3>
+                    </legend>
+                    <ul>
+                        <a  href="__APP__/Mobile/Study/study_detail?type=2&id={$id[8]}"><img width="100%"  src="{$img[8]}"/></a>
+                    </ul>
+                    <ul class="ulist">
+                        <volist name="videoList[8]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=2&id={$item.id}" ><span class="glyphicon glyphicon-film"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <volist name="txtList[8]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=1&id={$item.id}" ><span class="glyphicon glyphicon-list-alt"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <li><a href="__APP__/Mobile/Study/study_list?theme=8&type=1&pageId=0" style="color:#3592DD">更多</a></li>                        
+                    </ul>
+                    
+				</div> 
+                
+                
+                <div id="t8">
+                    <legend>
+                        <br/><br/>
+                    <h3>专家解惑</h3>
+                    </legend>
+                    <ul>
+                        <a  href="__APP__/Mobile/Study/study_detail?type=2&id={$id[9]}"><img width="100%"  src="{$img[9]}"/></a>
+                    </ul>
+                    <ul class="ulist">
+                        <volist name="videoList[9]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=2&id={$item.id}"><span class="glyphicon glyphicon-film"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <volist name="txtList[9]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=1&id={$item.id}" ><span class="glyphicon glyphicon-list-alt"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <li><a href="__APP__/Mobile/Study/study_list?theme=9&type=1&pageId=0"  style="color:#3592DD">更多</a></li>                        
+                    </ul>
+                    
+				</div> 
+                
+                <div id="t9">
+                    <legend>
+                        <br/><br/>
+                    <h3>网球小辞典</h3>
+                    </legend>
+                    <ul>
+                        <a  href="__APP__/Mobile/Study/study_detail?type=2&id={$id[10]}"><img width="100%"  src="{$img[10]}"/></a>
+                    </ul>
+                    <ul class="ulist">
+                        <volist name="videoList[10]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=2&id={$item.id}"><span class="glyphicon glyphicon-film"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <volist name="txtList[10]" id="item">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-9 col-md-9">
+                                    <a href="__APP__/Mobile/Study/study_detail?type=1&id={$item.id}" ><span class="glyphicon glyphicon-list-alt"></span>&nbsp;{$item.title}</a>
+                                </div>
+                                <div  class="col-xs-3 col-md-3">
+                                    {$item.update_date}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <li><a href="__APP__/Mobile/Study/study_list?theme=10&type=1&pageId=0"  style="color:#3592DD">更多</a></li>                        
+                    </ul>
+                    
+				</div> 
+                
+                
+            
+       
+		
+    <!-- FOOTER -->
+	<include file="Common:footer" />
+
+    </div><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script src="__JS__/sidebar.js"></script>
+  </body>
+  
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>后台管理</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="load(5)">
+    <!-- Carousel
+================================================== img:900*500-->
+      <include file="Common:header" />
+
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+      <div class="container" style="max-width:1280px">
+        <legend>
+        	<h3>用户模块后台管理</h3>
+        </legend>
+          
+        <div class="form-group">
+              <form class="form-inline" role="form" action="__APP__/Admin/User/user_list" method="get">
+                  	<div class="form-group">
+                        <label class="sr-only" for="userId">用户id条件</label>
+                         <input name="userId" class="form-control" id="exampleInputEmail2" placeholder="用户id条件" value="{$userId}">
+                      </div>                     
+                     <div class="form-group">
+                        <label class="sr-only" for="username">昵称条件</label>
+                         <input name="username" class="form-control" id="exampleInputEmail2" placeholder="昵称条件" value="{$username}">
+                      </div>
+                      
+                     <input type="hidden" name="pageId" value='0'/>
+                      <button type="submit" class="btn btn-primary" >条件搜索</button>
+                 <a  href="__APP__/Admin/User/user_list?pageId=0" class="btn btn-default" role="button" >默认搜索</a>
+                 &nbsp;&nbsp;用户统计：{$numOfUser} 
+                  <if condition="$adminRole eq 0">
+                  <a class="btn btn-info" data-toggle="modal" data-target="#clearAlertModal" role="button" >有效经验值恢复至注册后经验值</a>
+                  </if>
+              </form>
+           </div>
+          
+        <div class="row">
+            <div class="col-sm-offset-11">
+                <if condition="$adminRole eq 0">
+            	 <a href="__APP__/Admin/User/user_detail?add=1" target="_blank"><span class="col-xs-1 col-md-1 glyphicon glyphicon-plus" style="line-height:2"></span></a>
+                </if>          
+            </div> 
+            <div class="panel panel-danger">
+                    <div class="col-xs-12 col-md-12 panel-heading">
+                        <span class="col-xs-1 col-md-1">ID</span>
+                        <span class="col-xs-3 col-md-3" >用户名</span>
+                        <span class="col-xs-2 col-md-2">真实姓名</span>
+                        <span class="col-xs-1 col-md-1">角色</span>
+                        <span class="col-xs-1 col-md-1">ntrp</span>
+                        <span class="col-xs-2 col-md-2">城市</span>
+                        <span class="col-xs-2 col-md-2">操作</span>
+                     </div>
+                </div>
+			<volist name="list" id="item">
+                <div class="panel panel-info">
+                    <div class="row panel-heading">
+                        <span class="col-xs-1 col-md-1">{$item.id}</span>
+                        <if condition="$adminRole eq 0">
+                        	<a class="col-xs-3 col-md-3 panel-title" href="__APP__/Admin/User/user_detail?add=0&id={$item.id}" target="_blank"><span class="title-overflow">{$item.username}</span></a>
+                            <else/>
+                            <span class="col-xs-3 col-md-3 ">{$item.username}</span>
+                        </if>
+                        <span class="col-xs-2 col-md-2">{$item.truename}</span>
+                        <span class="col-xs-1 col-md-1">{$item.role}</span>
+                        <span class="col-xs-1 col-md-1">{$item.ntrp}</span>
+                        <span class="col-xs-2 col-md-2">{$item.city}</span>
+                        <if condition="$adminRole eq 0">
+                         <a href="__APP__/Admin/User/user_detail?add=0&id={$item.id}" target="_blank"><span class="col-xs-1 col-md-1 glyphicon glyphicon-edit" title="编辑"></span></a>
+                        <a href="#" data-toggle="modal" data-target="#alertModal" onclick="$('#id').val({$item.id});$('#pageId').val({$pageId});"><span class="col-xs-1 col-md-1 glyphicon glyphicon-remove" title="删除"></span></a>
+                        </if>
+                         <a href="__APP__/Admin/Mail/mail?mailbox={$item.mailbox}" target="_blank"><span class="col-xs-1 col-md-1 glyphicon glyphicon-envelope" title="邮件"></span></a>
+                        <if condition="$item.is_forbidden eq 0">
+                            <a href="#" onclick="$('#id').val({$item.id});$('#pageId').val({$pageId}); $('#opt{$item.id}').show();"><span class="col-xs-1 col-md-1 glyphicon glyphicon-volume-up" title="封禁"></span></a>  
+                            
+                            <div  class="form-group col-sm-2" id="opt{$item.id}" style="display:none">
+                                <br/>
+                                <input id="days{$item.id}" name="days" class="form-control" placeholder="天数(空白默认3天)" value="3" >
+                                <a class="btn btn-primary" onclick="lock($('#days{$item.id}').val());">封禁</a>
+                                <a class="btn btn-default" href="#" onclick="$('#opt{$item.id}').hide();">取消</a>                                
+                            </div>                            
+                            <else/>
+                            <a href="__APP__/Admin/User/release_user?id={$item.id}&pageId={$pageId}"><span class="col-xs-1 col-md-1 glyphicon glyphicon-volume-off" title="解封({$item.start_forbid_date}-{$item.end_forbid_date})"></span></a>
+                        </if>
+                     </div>
+                </div>
+            </volist>
+            <input type="hidden" id="id" value=""/>
+            <input type="hidden" id="pageId" value=""/>
+            
+    </div>
+          <div class="row">
+              <ul class="pager">
+                  <if condition="$pageId eq $pageId1">
+                      <li class="previous"><a style="margin-top:20px"  href="#">&larr; Older</a></li> 
+                      <else/>
+                      <li class="previous"><a style="margin-top:20px"  href="__APP__/Admin/User/user_list?pageId={$pageId1}{$condition}">&larr; Older</a></li>
+                  </if>
+                  <li class="center"><a style="margin-top:20px" href="#">{$page}</a></li>
+                  <if condition="$pageId eq $pageId2">
+                      <li class="next"><a style="margin-top:20px" href="#">Newer &rarr;</a></li>
+                      <else/>
+                      <li class="next"><a style="margin-top:20px" href="__APP__/Admin/User/user_list?pageId={$pageId2}{$condition}">Newer &rarr;</a></li>
+                  </if>
+                  
+              </ul>
+          </div>
+    <div class="row">
+		<include file="Common:footer" />
+    </div>
+          
+     <!-- Modal -->
+		<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">警 告</h4>
+		      </div>
+		      <div class="modal-body">
+		        是否确定删除？该操作不可逆哦！
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		        <button type="button" class="btn btn-primary" onclick="deleteRecord();">确定</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+          
+       <!-- Modal -->
+		<div class="modal fade" id="clearAlertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">警 告</h4>
+		      </div>
+		      <div class="modal-body">
+		        是否确定所有用户有效经验值清零？该操作不可逆哦！
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		         <a  href="__APP__/Admin/User/clearValueExp" class="btn btn-info" >确定</a>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+          
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+      <script type="text/javascript">
+        function deleteRecord(){
+        	var url = "__APP__/Admin/User/delete_record?id="+$('#id').val()+"&pageId="+$('#pageId').val();    
+            location = url;
+        }
+          
+         function lock(days){
+        	var url = "__APP__/Admin/User/lock_user?id="+$('#id').val()+"&days="+days+"&pageId="+$('#pageId').val();    
+            location = url;
+        }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>网动青春教练教学预约安排</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+    
+    <link href="__CSS__/lightbox.css" rel="stylesheet" />
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body>
+    <!-- Carousel
+================================================== img:900*500-->
+      <include file="Common:header" />
+
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+      <div class="container" style="min-width:1100px; max-width:1280px">
+		<legend>
+        	<h3>教学安排</h3>
+        </legend>
+        <div class="row">
+        	<div class="panel panel-danger">
+                    <div class="col-sm-8 panel-heading">
+                        <span class="col-sm-8">教学日期及时间段</span>
+                        <span class="col-sm-4">操作</span>
+                     </div>
+                </div>
+			<volist name="list" id="item">
+                <div class="col-sm-8 panel panel-info">
+                    <div class="row panel-heading">
+                        <span class="col-sm-8"><a href="__APP__/Coach/set_appointment?type=0&id={$item.id}">【{$item.date}】 {$item.time_field}</a></span>
+                        <a href="__APP__/Coach/set_appointment?type=1&id={$item.id}"><span class="col-sm-2 glyphicon glyphicon-edit" title="编辑"></span></a>
+                        <a href="#" data-toggle="modal" data-target="#alertModal" onclick="$('#id').val({$item.id});"><span class="col-sm-2 glyphicon glyphicon-remove" title="删除"></span></a>
+                        
+                     </div>
+                </div>
+            </volist>    
+        </div>
+        <input type="hidden" id="id" value=""/>
+        <br/><br/><br/>  
+        <form class="form-horizontal" id="edit" role="form" action="__APP__/Coach/submit_appointment" method="post" autocomplete="false">
+            <input type="hidden" name="id" value="{$appointment.id}" />
+            <input type="hidden" name="type" value="{$type}" />
+            <div class="form-group row">
+                <span class="col-sm-2 control-span">教学日期</span>
+                
+                <div class="col-sm-6">
+                    <input class="form-control col-sm-10" name="date" value='{$appointment.date}' placeholder="2014.10.20 周一" required/>
+                </div>
+            </div>    
+            <div class="form-group row">
+                <span class="col-sm-2 control-span">时间段</span>
+                
+                <div class="col-sm-6">
+                    <input class="form-control col-sm-10" name="time_field" value='{$appointment.time_field}' placeholder="多个时间段以半角分号结束" required/>
+                </div>
+            </div>   
+            <div class="form-group row">
+                <span class="col-sm-2 control-span">备注</span>
+                
+                <div class="col-sm-6">
+                    <textarea class="form-control col-sm-10" name="tip" rows=4  placeholder="可填写安排结果或注意事项" required>{$appointment.tip}</textarea>
+                </div>
+            </div> 
+            <div class="form-group row">
+             <if condition="$result eq 1">
+              <span class="btn-success col-sm-2 control-span">预约情况</span>
+                <div class="col-sm-6">
+                    <volist name="select_list" id="select_item">
+                        {$select_item.name}: {$select_item.time_field}(备注：{$select_item.tip})<br/>
+                    </volist>
+                </div>
+          </if>
+            </div>
+            <empty  name="type">
+            	<button class="col-sm-offset-1 col-sm-2 btn btn-primary" type="submit">提交</button>
+                <a class="btn btn-default col-sm-offset-1 col-sm-2" href="__APP__/Coach/set_appointment" >返回</a>
+            </empty >
+          </form>
+          
+         
+          <br/><br/><br/>
+      <!-- FOOTER -->
+        <include file="Common:footer" />
+
+    </div><!-- /.container -->
+      
+      <!-- Modal -->
+		<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">警 告</h4>
+		      </div>
+		      <div class="modal-body">
+		        是否确定删除？该操作不可逆哦！
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		        <button type="button" class="btn btn-primary" onclick="deleteRecord();">确定</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+     <script type="text/javascript">
+        function deleteRecord(){
+        	var url = "__APP__/Coach/set_appointment?type=2&id="+$('#id').val();    
+            location = url;
+        }
+          
+    </script>
+  </body>
+</html>

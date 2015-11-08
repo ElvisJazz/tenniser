@@ -1,0 +1,42 @@
+<header>   
+	<div class="navbar navbar-inverse navbar-fixed-top my_nav"  role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+            <a class="navbar-brand hidden-sm" href="__APP__/Index/index{$pagePostfix}">{$clubName}</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+              <li id="nav_0"><a class="btn" href="__APP__/Admin/Index/index">首页</a></li> 
+              <li id="nav_5"><a class="btn" href="__APP__/Admin/User/user_list?pageId=0">用户</a></li>
+              <li id="nav_1"><a class="btn" href="__APP__/Admin/Study/study_list?theme=0&type=1&pageId=0">教学</a></li>
+              <li id="nav_2"><a class="btn" href="__APP__/Admin/Activity/activity_list?type=0&pageId=0">活动</a></li>
+              <li id="nav_3"><a class="btn" href="__APP__/Admin/Invitation/invite_list?type=1&pageId=0">约球</a></li>
+              <li id="nav_4"><a class="btn" href="__APP__/Admin/Photo/photo_list?pageId=0">相册</a></li>
+              <li id="nav_8"><a class="btn" href="__APP__/Admin/Announcement/announcement_list?pageId=0">公告</a></li>
+              <li id="nav_6"><a class="btn" href="__APP__/Admin/Advice/advice_list?pageId=0">反馈</a></li>
+              <if condition="$role eq 0">
+              	<li id="nav_7"><a class="btn" href="__APP__/Admin/Log/log_list?pageId=0">日志</a></li>
+              </if>
+              <li><a class="btn" href="https://mp.weixin.qq.com" target="_blank">微信公众平台</a></li>
+              <li><a class="btn" href="http://tongji.baidu.com/web/welcome/login" target="_blank">站内分析</a></li>
+          </ul>
+ 			<ul class="nav navbar-nav navbar-right">
+                {$logon} 
+    		</ul> 
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:50px"></div>
+	<script>
+    function load(id)
+	{
+		var activeNav = document.getElementById("nav_"+id); 
+		activeNav.setAttribute("class", "active"); 
+	}
+	</script>
+</header>

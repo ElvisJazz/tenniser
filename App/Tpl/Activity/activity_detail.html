@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>心隨球動</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="load(3)">
+    <!-- Carousel
+================================================== img:900*500-->
+      <include file="Common:header" />  
+	  
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div id="jiathis_main" class="container"  style="min-width:1100px; max-width:1280px">        
+        <legend>
+            <h3>心随球动</h3>
+        </legend>
+        <ol class="breadcrumb">
+            <li><a href="__APP__/">首页</a></li>
+              <li><a href="__APP__/Activity/activity_list">活动</a></li> 
+          <li class="active">{$item['title']}</li>
+        </ol>
+        
+        <div class="jumbotron" style="background-color:#3C4138; color:white;">
+            <center><h3>{$item['title']}</h3></center>
+            <table style="font-size:16px">
+              <tr>
+                  <td width="120" valign="baseline">活动简介：</td>
+                  <td valign="baseline">{$item['introduction']}</td>                                 
+              </tr>
+              <tr>
+                  <td width="120" valign="baseline">开始时间：</td>
+                  <td valign="baseline">{$item['start_time']}</td>                                 
+              </tr>
+              <tr>
+                  <td width="120" valign="baseline">结束时间：</td>
+                  <td valign="baseline">{$item['end_time']}</td>                                 
+              </tr>
+               <tr>
+                  <td width="120" valign="baseline">地点：</td>
+                  <td valign="baseline">{$item['location']}</td>                                 
+              </tr>
+               <tr>
+                  <td width="120" valign="baseline">组织方：</td>
+                  <td valign="baseline">{$item['organizer']}</td>                                 
+              </tr>
+               <tr>
+                  <td width="120" valign="baseline">参与对象：</td>
+                  <td valign="baseline">{$item['participant']}</td>                                 
+              </tr>             
+               <tr>
+                  <td width="120" valign="baseline">活动内容：</td>
+                   <td valign="baseline"><pre style="background-color: #3C4138; color:white; border:0; padding:0;">{$item['content']}</pre></td>                                 
+              </tr>
+              <tr>
+                  <td width="120" valign="baseline">发布时间：</td>
+                  <td valign="baseline">{$item['update_date']}</td>                                 
+              </tr>
+              <tr>
+                  <td width="63" valign="baseline">当前状态：</td>
+                  <td valign="baseline"><span style="color:rgb(239, 66, 35)">{$item.tip}</span> </td>                                 
+                </tr>
+              
+           </table>
+             <p>
+                 <if condition="($item.need_sign eq 1)">
+                     <a id="{$item.id}_1a" class="btn btn-primary" role="button" data-toggle="modal" data-target="#ensureModal" onclick="document.getElementById('signId').value ='{$item.id}';document.getElementById('activityType').value ='{$item.type}';"  {$item.disable1}><span id="{$item.id}_1" class="glyphicon glyphicon-send" title="想来你就点一下"> {$item.sign}</span></a> 
+                     <input id="signId" type="hidden" value=0 />
+                     <else/>
+                     <a  class="btn btn-primary" role="button" disabled>无需报名</a> 
+                     
+                 </if>
+                 <a  id="{$item.id}_2a"  class="btn btn-default" role="button" onclick="goodComment({$item.id});" {$item.disable2} ><span id="{$item.id}_2" class="glyphicon glyphicon-thumbs-up" title="好赞你就来一个"> {$item.good}</span></a>                                 	
+                 
+                 <if condition="($item.state neq 0)">
+                 	 <a  href="__APP__/Match/serialMatch_detail?id={$item.id}" class="btn btn-danger" role="button">赛程赛况</a> 
+                 <else/>
+                     <a  class="btn btn-danger" role="button" disabled>赛程赛况</a> 
+                 </if>
+            </p>
+            
+           
+        </div>
+        
+        <!-- UY BEGIN -->
+            <div id="uyan_frame"></div>
+            
+            <!-- UY END -->
+        
+        <include file="Common:footer" />
+      </div>
+        
+	
+        <!-- Modal -->
+        <div class="modal fade" id="ensureModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Are you sure?</h4>
+              </div>
+              <div class="modal-body">
+                 感谢你的积极与热情，确定要报名参与此次活动？不可失约哟！~
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="sign();">确定</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        
+        <!-- Modal -->
+        <div class="modal fade" id="alert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel"><span class="btn-info">提示</span></h4>
+              </div>
+              <div id="alertTip" class="modal-body">
+                 
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+      
+      <input id="result" type="hidden" value="0" />
+      <input id="id_index" type="hidden" value="0" />
+    <input id="activityType" type="hidden"  value />
+      
+	<script type="text/javascript">
+        $('#alert').on('hidden.bs.modal', function (e) {
+            if($("#result").val()==0 || $("#result").val()==-1){	
+                return false;
+            }
+            else{                
+             	$("#"+$("#id_index").val()).text($("#result").val());
+                $("#"+$("#id_index").val()+"a").attr("disabled","disabled");                
+            }
+		});
+        
+    	var xmlHttp;
+
+        function GetXmlHttpObject()
+        {
+            var xmlHttp=null;
+            try
+             {
+                 // Firefox, Opera 8.0+, Safari
+                 xmlHttp=new XMLHttpRequest();
+             }
+            catch (e)
+             {
+                 // Internet Explorer
+                 try
+                  {
+                  	xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+                  }
+                 catch (e)
+                  {
+                  	xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+             }
+            return xmlHttp;
+        } 
+        
+        function sign()
+        {
+            
+            xmlHttp=GetXmlHttpObject();            
+            if (xmlHttp==null)
+            {
+              alert ("Browser does not support HTTP Request");
+              return;
+            } 
+            var url="__APP__/Activity/activity_sign?type="+document.getElementById("activityType").value+"&id="+document.getElementById("signId").value;
+            $("#id_index").val($("#signId").val()+"_1");
+            
+            xmlHttp.onreadystatechange=stateChangedForSign; 
+            xmlHttp.open("GET",url,true);
+            xmlHttp.send(null);
+        } 
+        
+        function goodComment(id)
+        {
+            xmlHttp=GetXmlHttpObject();
+            if (xmlHttp==null)
+            {
+              alert ("Browser does not support HTTP Request");
+              return;
+            } 
+            var url="__APP__/Activity/activity_comment?id="+id;
+            $("#id_index").val(id+"_2");
+            
+            xmlHttp.onreadystatechange=stateChangedForGoodComment; 
+            xmlHttp.open("GET",url,true);
+            xmlHttp.send(null);
+        } 
+        
+        function stateChangedForSign() 
+        { 
+            var data = "";
+            var jObject;
+            if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+             { 
+                 if(xmlHttp.status == 200){  
+                     	jObject = eval('('+xmlHttp.responseText+')'); 
+                         switch(jObject.data){
+                             case -1: data="请先登录，再操作！"; $("#result").val(0); break;    
+                             case 0: data="报名失败！"; $("#result").val(0); break;
+                             case -2: data="报名失败，需要用户在用户中心补充真实姓名或手机号码！"; $("#result").val(0); break;
+                             default:data="报名成功！"; $("#result").val(" 已报名("+jObject.data+")"); break;
+                         }
+                     	
+                    } else {  
+                        data = "系统开小差啦，快联系管理员！";
+                    } 
+                 $('#alertTip').text(data);
+                 $('#alert').modal('show');
+                 
+             } 
+        }
+        
+        function stateChangedForGoodComment() 
+        { 
+            if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+             { 
+                 var data = "";
+                if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+             	{ 
+                     if(xmlHttp.status == 200){  
+                            jObject = eval('('+xmlHttp.responseText+')'); 
+                             switch(jObject.data){
+                                 case -1: data="请先登录，再操作！"; $("#result").val(0); break;    
+                                 case 0: data="小赞失败！"; $("#result").val(0); break;
+                                 default: data="大赞成功！"; $("#result").val(" 已赞("+jObject.data+")") ;break;
+                             }                           
+                        } else {  
+                           	data = "系统开小差啦，快联系管理员！";
+                         }   
+                 	
+                    $('#alertTip').text(data);
+                    $('#alert').modal('show'); 
+             } 
+        }
+        
+        
+            }
+    </script>
+   
+
+	<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>

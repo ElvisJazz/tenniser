@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>必有我师</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link href="__CSS__/lightbox.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="load(2)">
+    <!-- Carousel
+================================================== img:900*500-->
+    <include file="Common:header" />
+	
+    <div id="jiathis_main" class="container">
+       
+        <ol class="breadcrumb">
+            <li><a href="__APP__/Mobile/Index/index">首页</a></li>
+            <li><a href="__APP__/Mobile/Study/study">教学</a></li>        
+            <li><a href="__APP__/Mobile/Study/study_list?type={$type}&theme={$theme}&pageId=0">{$module}</a></li>
+          <li class="active">{$title}的所有评论</li>
+        </ol>
+        
+        <volist name="commentList" id="item">
+            <div class="row">
+                <div class="panel panel-success col-sm-10">
+                    <div class="panel-heading" style="padding:0"><img src="{$item.img}" height="45px" alt="头像"/>&nbsp; &nbsp;{$item.info}</div>
+                    <div class="panel-body">
+                        {$item.comment}
+                    </div>
+                </div>  
+            </div>
+        </volist>
+        
+        <div class="row col-sm-10">
+            <ul class="pager">
+                <if condition="$pageId eq $pageId1">
+                <li class="previous"><a style="margin-top:20px"  href="#">&larr; Older</a></li> 
+                    <else/>
+                    <li class="previous"><a style="margin-top:20px"  href="__APP__/Mobile/Study/study_more_comment?id={$id}&type={$type}&pageId={$pageId1}&theme={$theme}&title={$title}">&larr; Older</a></li> 
+                </if>
+                <li class="center"><a style="margin-top:20px" href="#">{$page}</a></li>
+                <if condition="$pageId eq $pageId2">
+                <li class="next"><a style="margin-top:20px" href="#">Newer &rarr;</a></li>
+                    <else/>
+                    <li class="next"><a style="margin-top:20px" href="__APP__/Mobile/Study/study_more_comment?id={$id}&type={$type}&pageId={$pageId2}&theme={$theme}&title={$title}">Newer &rarr;</a></li>
+                    </if>
+            </ul>
+        </div>
+        
+        <div class="row col-sm-12">
+    		<include file="Common:footer" />
+        </div>
+    </div><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script src="__JS__/sidebar.js"></script>
+    <script src="__JS__/lightbox.min.js"></script>      
+  </body>
+  
+</html>

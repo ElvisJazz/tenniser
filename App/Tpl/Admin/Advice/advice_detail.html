@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>后台管理</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="load(6)">
+    <!-- Carousel
+================================================== img:900*500-->
+      <include file="Common:header" />  
+	  
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container">        
+        <legend>
+            <h3>反馈模块后台管理</h3>
+        </legend>
+        <div class="row">
+        <div class="col-sm-offset-1 col-sm-10">
+        <form   class="form-horizontal" role="form" action="__APP__/Admin/Photo/photo_submit" method="post">
+            <div class="jumbotron" style="background-color:#3C4138; color:white;">
+                <input type="hidden" name="id" value="{$item.id}" />
+                <input type="hidden" name="add" value="{$add}" />
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">标题</label>
+                    <div class="col-sm-10 ">
+                        <input name="title"  class="form-control" value="{$item.title}" autofocus="autofocus"  disabled>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">描述</label>
+                    <div class="col-sm-10 ">
+                        <textarea name="content"  class="form-control" rows=3 autofocus="autofocus"  disabled>{$item.content}</textarea>
+                    </div>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">提交人</label>
+                    <div class="col-sm-10 ">
+                        <input  class="form-control" value="{$item.update_user}" autofocus="autofocus"  disabled>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">提交日期</label>
+                    <div class="col-sm-10 ">
+                        <input name="updateDate"  class="form-control" value="{$item.updateDate}" autofocus="autofocus"  disabled>
+                    </div>
+                </div>   
+                
+            </div>
+            
+        </form>                
+        </div>
+        </div>
+        <div class="row">
+        <include file="Common:footer" />
+      	</div>
+      </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>

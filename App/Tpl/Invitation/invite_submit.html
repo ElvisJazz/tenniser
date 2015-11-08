@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>有球必应</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    <link href="__CSS__/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="load(5)" background="__IMG__/court.jpg">
+    <!-- Carousel
+================================================== img:900*500-->
+      <include file="Common:header" />
+      
+
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+      <div id="jiathis_main" class="container" style="margin-top:5%; min-width:1100px; max-width:1280px; background-color:white" >
+
+      <!-- Three columns of text below the carousel img(140*140) -->
+      <!-- Three columns of text below the carousel img(140*140) -->
+      <div class="row">
+        <div class="col-sm-offset-1 col-sm-10">
+            <form class="form-horizontal" role="form" action="__APP__/Invitation/invite_submit_{$editStr}{$type}" method="post">
+            <fieldset>
+                <h3>
+                    <if condition="$type eq 1">
+                    	我要约球
+                    <else/>
+                        我要球友
+                    </if>
+                </h3>
+                <br/>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">标题</label>
+                    <div class="col-sm-8 ">
+                        <input name="title" class="form-control col-sm-9" id="title" placeholder="醒目标题" autofocus="autofocus" maxlength=31 value="{$item.title}" required />
+                    </div>
+                    <div class="col-sm-2 help-block">
+                        <span >长度小于31</span>
+                    </div>
+            </div>
+                <if condition="$type eq 1">
+            <div class="form-group">
+                <label for="time" class="col-sm-2 control-label">约球时间</label>
+                <div style="margin-left:22%" class="input-group date form_datetime col-sm-4" data-date="{$now}" data-date-format="yyyy-mm-dd hh:ii:ss" data-link-field="time">
+                    <input class="form-control" size="16" type="text" value="{$item.time}" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+               
+				<input type="hidden" name="time" id="time" value="{$item.time}" required/><br/>
+            </div>
+           
+            </if>
+            <div class="form-group">
+                <label class="col-sm-2 control-label"><if condition="$type eq 1">打球地点<else/>长期据点</if></label>
+                    <div class="col-sm-8">
+                        <input name="place" class="form-control" id="place" placeholder="开打地点"  value="{$item.place}" required>
+                    </div>
+                    <div class="col-sm-2 help-block">
+                        <span>放鸽子可不好</span>
+                    </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">ntrp要求</label>
+                    <div class="col-sm-8">
+                        <input name="ntrp" class="form-control" id="ntrp" placeholder="希望对方的ntrp" value="{$item.ntrp}" pattern="([1-6]\.[05]$)|(7\.0$)" required>
+                    </div>
+                	<div class="col-sm-2 help-block">
+                        <span>适合自己的才是最好的</span><a href="http://baike.baidu.com/link?url=ykju-jXZvkSBNbl7Sfbk871GWhgUBTSiaUdMIMGXXAZbjyCAgvc6IhUC4nNZsxPIe1wN0OQ9N_VNCNXM5vtWYa" target="_blank">what's ntrp ?</a>
+                    </div>
+            </div>
+            <if condition="$type eq 1">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">约球类别</label>
+                    <div class="col-sm-8" style="padding:5px">
+                       &nbsp; <input type="radio" name="type" id="type1" value="1" checked="checked">个人
+                        &nbsp;&nbsp;
+                        <input type="radio" name="type" id="type2" value="2" >团体
+                    </div>
+            </div>
+             </if>
+             <div class="form-group">
+                <label class="col-sm-2 control-label">约球详情</label>
+				<div class="col-sm-8">
+                    <textarea name="content" class="form-control" rows=8 id="content" placeholder="多点介绍，多点了解"  required>{$item.content}</textarea>
+                </div>               
+             </div> 
+             <div class="form-group">
+                <label class="col-sm-2 control-label">是否公开信息</label>
+                 <div class="col-sm-2 help-block">                     
+                        <input type="radio" name="allowinfo"  value="1" checked="checked">是
+                        &nbsp;&nbsp;
+                        <input type="radio" name="allowinfo" value="0" >否
+                 </div>
+                 <div class="col-sm-8 help-block">
+                     <span>勾选将显示个人信息中的联系方式的信息，也可在详情中提供</span>
+                 </div>
+             </div> 
+                
+                <input type="hidden" name="update_user" value='{$update_user}'/>
+                <input type="hidden" name="invitation_type" value='{$type}'/>                    
+                <input type="hidden" name="club_id" value='{$club_id}'/>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-3">
+                    <button type="submit" class="btn btn-primary" id="ok"> &nbsp; <if condition="$edit eq 1">一 发 得 分<else/>确 定 二 发</if> &nbsp; </button>
+                </div>
+                 <div class="col-sm-3">
+                    <a  href="__APP__/Invitation/invite_list?type={$type}&pageId=0" class="btn btn-default" role="button" > &nbsp; 返 回 场 边 &nbsp; </a>
+                </div>
+            </div>
+            </fieldset>
+        </form>
+    </div>
+   </div><!-- /.row -->
+      
+		
+      <!-- FOOTER -->
+	 <include file="Common:footer" />
+
+
+    </div><!-- /.container -->
+     <script src="__JS__/md5.js"></script>
+      <script type="text/javascript" src="__JS__/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="__JS__/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+	 <script>
+        $('.form_datetime').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
+	$('.form_date').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$('.form_time').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 1,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    });
+            //在页面初始化事件（onload）时注册的自定义事件
+            window.addEventListener("load", loadDemo, false);
+    </script>
+   
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>必有我师</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link href="__CSS__/lightbox.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="load(2)">
+    <!-- Carousel
+================================================== img:900*500-->
+    <include file="Common:header" />
+	
+    <div id="jiathis_main" class="container" > 
+        <ol class="breadcrumb">
+            <li><a href="__APP__/Mobile/Index/index">首页</a></li>
+            <li><a href="__APP__/Mobile/Study/study">教学</a></li>        
+            <li><a href="__APP__/Mobile/Study/study_list?type={$type}&theme={$theme}&pageId=0">{$module}</a></li>
+          <li class="active">{$title}</li>
+        </ol>
+        <div>
+            <if condition="($type eq 1)">
+                <div class="row" oncontextmenu='return false' ondragstart='return false' onselectstart ='return false' onselect='if(document.all){document.selection.empty()}' oncopy='if(document.all){document.selection.empty()}' onbeforecopy='return false'>
+            	<pre><h3 align="center">{$title}</h3>{$content}<br/><br/><br/><p style="color:green" align="right">更新：{$updateUser} 日期：{$updateDate}</p></pre>
+                </div>
+            <else />
+                <center><h3 align="center">{$title}</h3><embed wmode="opaque" allowfullscreen="true" allowscriptaccess="always" type="application/x-shockwave-flash" src="{$content}"></center>
+           		<br/><br/><br/><p style="color:green" align="right">更新：{$updateUser} 日期：{$updateDate}</p>
+            </if>
+        </div>    
+        
+        
+        <div class="row">
+            <div>
+                <legend>
+                    <h3 class="btn-success">好资源，我上传，你点评，共分享！</h3>
+                </legend>
+                <form class="form-horizontal" id="edit" role="form" action="__APP__/Mobile/Study/comment" method="post" autocomplete="false"> 
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <textarea class="form-control " name="comment" placeholder="好赞、吐槽、疑问、求教，统统可以~" maxlength=255 required></textarea>
+                        </div>
+                        <input type="hidden" name="id" value="{$id}"/>
+                        <input type="hidden" name="type" value="{$type}"/>
+                        
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary">保存</button>
+                        </div>
+                    </div>    
+                   
+                </form> 
+            </div>                
+        </div>
+        
+        <volist name="commentList" id="item">
+            <div class="row">
+                <div class="panel panel-success col-sm-10">
+                    <div class="panel-heading" style="padding:0"><img src="{$item.img}" height="45px" alt="头像"/>&nbsp; &nbsp;{$item.info}</div>
+                    <div class="panel-body">
+                        {$item.comment}
+                    </div>
+                </div>  
+            </div>
+        </volist>
+        
+        <if condition="$num gt 10">
+            <div class="row">
+                <a href="__APP__/Mobile/Study/study_more_comment?id={$id}&type={$type}&pageId=0&theme={$theme}&title={$title}">更多评论{$num}篇</a>
+            </div>
+        </if>
+        
+        <div class="row">
+    		<include file="Common:footer" />
+        </div>
+    </div><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script src="__JS__/sidebar.js"></script>
+    <script src="__JS__/lightbox.min.js"></script>      
+  </body>
+  
+</html>

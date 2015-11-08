@@ -1,0 +1,198 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<header style="min-width:1100px;">   
+	<div class="navbar navbar-inverse navbar-fixed-top my_nav"  role="navigation">
+        <div class="container" style="padding-right:0; padding-left:0">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+            <a class="navbar-brand hidden-sm" href="__APP__/Index/index{$pagePostfix}">{$clubName}</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+              <li id="nav_1"><a class="btn" href="__APP__/Index/index{$pagePostfix}">首页</a></li>
+              <li id="nav_2"><a class="btn" href="__APP__/Study/study">教学</a></li>
+              <li id="nav_3"><a class="btn" href="__APP__/Activity/activity_list?type=0&pageId=0">活动</a></li>
+              <li id="nav_4"><a class="btn" href="__APP__/Service/service{$pagePostfix}">服务</a></li>
+              <li id="nav_5"><a class="btn" href="__APP__/Invitation/invite_list?type=1&pageId=0">约球</a></li>
+              <li id="nav_6"><a class="btn" href="__APP__/Recruit/sign{$pagePostfix}">招新</a></li>
+              <li id="nav_10"><a class="btn" href="__APP__/Photo/photo_list">相册</a></li>
+              <!--li><a class="btn" href="http://tieba.baidu.com/f?kw=%B6%AB%C4%CF%B4%F3%D1%A7%CD%F8%C7%F2%BD%BB%C1%F7" target="_blank">网吧</a></li-->
+              <li id="nav_7"><a class="btn" href="__APP__/About/about{$pagePostfix}">我们</a></li>
+              <li id="nav_11"><a class="btn" href="__APP__/Sponsor/sponsor">赞助</a></li>
+              
+          </ul>
+            <ul class="nav navbar-nav navbar-right" >
+                {$logon}      			
+                <li id="nav_9"><a class="btn" href="__APP__/Register/register">注册</a></li>
+                <li id="nav_12" class="dropdown">
+                    <a href="#" class="dropdown-toggle" style="text-align:center" data-toggle="dropdown">新手必点</a>
+                  <ul class="dropdown-menu" style="width:250px;">  
+                      {$sign}
+                      <li><a class="btn" id="instructionButton" data-toggle="modal" data-target="#instructionModal" >用户指南</a></li>
+                      <li><a class="btn" href="__APP__/Public/score_exp?pageId=0">排行版</a></li>
+                	  <li><a class="btn" data-toggle="modal" data-target="#replyModal">信息反馈</a></li>
+                      <li><a class="btn" data-toggle="modal" data-target="#appModal">下载App</a></li>
+                      <li><a class="btn" data-toggle="modal" data-target="#weixinModal">微信订阅和腾讯微博</a></li>
+                      <li class="divider"></li>
+                        <script>
+                          (function() {
+                            var cx = '010621243521350754751:jduevwqtqzy';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                                '//www.google.com/cse/cse.js?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                          })();
+                        </script>
+                        <gcse:search></gcse:search>
+                  </ul>
+              </li>
+    		</ul> 
+            <ul> 
+        	</ul> 
+         </div>  </div> </div>
+    <div style="margin-top:50px"></div>
+    <!-- Modal -->
+        <div class="modal fade" id="signAlert"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel"><span>提示</span></h4>
+              </div>
+              <div id="signTip" class="modal-body">
+                 	
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    
+    <!-- Modal -->
+        <div class="modal fade" id="appModal"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel">下载手机App，随时随地学网球，找伙伴！</h4>
+              </div>
+              <div class="modal-body">
+                  <center><img src="__IMG__/app_logo.jpg"/>
+                      下载到电脑：<a href="http://pan.baidu.com/s/1dDERXbb" target="_blank">猛击这里下载</a></center>
+                  <br/><br/><center><span class="btn btn-info">扫一扫又不会怀孕</span></center><center><img src="__IMG__/app.jpg"/></center>
+            
+                </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    
+    <div class="modal fade" id="weixinModal"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel">out啦，微信加微博，让你与网球亲密无间</h4>
+              </div>
+              <div class="modal-body">
+                  <span class="btn btn-info" style="cursor:none">订阅网动青春微信服务号，活动比赛扫一下搞定！</span><img width="135px" src="__IMG__/getqrcode.jpg"/>
+                  <span class="btn btn-warning" style="cursor:none">网动青春官方腾讯微博，让你实时接收网球动态！</span>
+                  <a href="http://t.qq.com/seu_tenniser" target="_blank">前往青春微博，猛戳我！</a>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    
+	<script>
+    function load(id)
+	{
+		var activeNav = document.getElementById("nav_"+id); 
+		activeNav.setAttribute("class", "active"); 
+        
+        
+	}
+        
+        
+	
+    	var xmlHttp;
+
+        function GetXmlHttpObject()
+        {
+            var xmlHttp=null;
+            try
+             {
+                 // Firefox, Opera 8.0+, Safari
+                 xmlHttp=new XMLHttpRequest();
+             }
+            catch (e)
+             {
+                 // Internet Explorer
+                 try
+                  {
+                  	xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+                  }
+                 catch (e)
+                  {
+                  	xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+             }
+            return xmlHttp;
+        } 
+        
+        function sign0()
+        {
+            
+            xmlHttp=GetXmlHttpObject();            
+            if (xmlHttp==null)
+            {
+              alert ("Browser does not support HTTP Request");
+              return;
+            } 
+            var url="__APP__/Public/registerAttendance";
+            
+            xmlHttp.onreadystatechange=stateChangedForSign0; 
+            xmlHttp.open("GET",url,true);
+            xmlHttp.send(null);
+        } 
+        
+        function stateChangedForSign0() 
+        { 
+            var data = "";
+            var jObject;
+            if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+             { 
+                 if(xmlHttp.status == 200){  
+                     	jObject = eval('('+xmlHttp.responseText+')'); 
+                         switch(jObject.data){
+                             case -1: data="请先登录，再操作！"; break;    
+                             case 0: data="签到失败！";break;
+                             default:data="已签到"; ; break;
+                         }
+                     	
+                    } else {  
+                        data = "系统开小差啦，快联系管理员！";
+                    } 
+                
+                 $("#signStr").text(data);
+                 $("#signStr").attr("disabled","disabled");
+                 $('#signTip').text(data);
+                 $('#signAlert').modal('show');
+             } 
+        }
+        
+    </script>
+    <div id="site-navbar" style="position: absolute; top: -4px; left: -3px; border: 0; z-index: 2000;padding:0;margin:0;"><a href="/?fp=1" title="返回首页" style="background:none;"><img src="__IMG__/return-back.png" style="padding:0;margin:0;border:0; -webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;"></a></div>
+      
+</header>

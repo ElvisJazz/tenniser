@@ -1,0 +1,234 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>赛程赛况</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+    
+    
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="load(2)">
+    <!-- Carousel
+================================================== img:900*500-->
+    <include file="Common:header" />
+
+    <div class="container" style="min-width:1100px; max-width:1280px">  
+        <legend><h2 class="title-color">赛事安排平台</h2></legend>
+       
+      <div class="thumbnail">
+         <div class="caption"> 
+         	 <div class="row">
+                <div class="col-sm-7 col-xs-7">
+                    <h3>{$activity[title]}</h3>
+                    <p>内容：{$activity[content]}</p>
+                    <p>时间：{$activity[start_time]}至{$activity[end_time]}</p>
+                    <p>参赛者数目：{$activity[headcount]}</p>
+                    <p><if condition="$matchArrangeType eq 0">安排形式：小组赛<elseif condition='matchArrangeType eq 1'/>安排形式：淘汰赛</if></p>
+                    </div>
+                <div class="col-sm-5 col-xs-5">
+                    <img src="{$activity.cover}"/>
+                </div>
+                
+             </div>
+         </div>
+       </div>
+        
+        
+       <div class="row">
+          <if condition="$matchArrangeType eq 2">
+              <center><h3>很抱歉，暂不支持256人以上的淘汰赛，建议先进行小组赛后安排生育人参加淘汰赛！</h3><img src="__IMG__/notExist.jpg"  alt="暂无"/></center>
+              <else/>
+              <form class='horizontal-form' action='__APP__/Admin/Match/serialMatch_release_presubmit?id={$id}&type={$matchArrangeType}' method='post'> 
+                  <div style="margin-left:20;">
+                  <button type="submit" class="btn btn-info">确认随机生成剩余选手分配</button>
+                  <a href="javascript:void(0);" title="点击待安排的选手位可以安排选手，如果您想安排部分选手后随机生成分组，然后再做调整，可在做完手工安排操作点击左边的按钮。"><span class="glyphicon glyphicon-info-sign" ></span></a>
+               <button type="submit" class="btn btn-danger" onclick='var r=confirm("此操作不可逆，是否确定？"); if(r==false) return false; $("#ensureArrange").val(1);'>确认完成选手分配</button>
+                  <input type='hidden' name='ensureArrange' id='ensureArrange' value='0' />
+                   <input type='hidden' name='groupNum' id='groupNum' value='{$groupNum}' >
+                  </div>  
+                  <for start="1" end="$groupNum+1">
+                      <div class="col-xs-3 col-md-2">    	
+                          <h3><strong>{$groupArray[$i]}组</strong></h3>
+                          <table class="table table-condensed">
+                              <tbody>
+                                  <tr class="btn-primary">
+                                      <th>组别</th>
+                                      <th>选手(队伍)</th>
+                                  </tr> 
+                                  <for start="1" end="$eachGroupAmount+1" name="j">
+                                      <tr>
+                                          <td>{$groupArray[$i]}{$j}</td>
+                                          <td>
+                                              <if condition="$groupVoidArray[$i][$j] eq 1">
+                                                  <span class="btn-success">轮空</span>
+                                                  <input type='hidden' name='{$groupArray[$i]}{$j}' id='{$groupArray[$i]}{$j}_id' value='0' />
+                                              <elseif condition="$hasSetPlayer eq 0"/> 
+                                                  <a  id='{$groupArray[$i]}{$j}'href="javascript:void(0);" data-toggle="modal" data-target="#arrangePlayer" 
+                                                  onclick="$('#current_player_element_id').val(this.id);$('#current_player_id').val($('#{$groupArray[$i]}{$j}_id').val());
+														   $('#current_player_name').val($('#{$groupArray[$i]}{$j}_name').val());$('#current_player_letter').val($('#{$groupArray[$i]}{$j}_letter').val());">
+                                                      	<span class="glyphicon glyphicon-user"></span>
+                                                  </a>
+                                                  <input type='hidden' name='{$groupArray[$i]}{$j}' id='{$groupArray[$i]}{$j}_id' value='{$players[$groupArray[$i]][$j][id]}' />
+                                                  <input type='hidden' id='{$groupArray[$i]}{$j}_name' value='{$players[$groupArray[$i]][$j][name]}' />
+                                                  <input type='hidden' id='{$groupArray[$i]}{$j}_letter' value='{$players[$groupArray[$i]][$j][letter]}' />
+                                              <else/> 
+                                                  <a  id='{$groupArray[$i]}{$j}'href="javascript:void(0);" data-toggle="modal" data-target="#arrangePlayer" 
+                                                  onclick="$('#current_player_element_id').val(this.id);$('#current_player_id').val($('#{$groupArray[$i]}{$j}_id').val());
+														   $('#current_player_name').val($('#{$groupArray[$i]}{$j}_name').val());$('#current_player_letter').val($('#{$groupArray[$i]}{$j}_letter').val());">
+                                                      	  {$players[$groupArray[$i]][$j][name]}
+                                                  </a>
+                                                  <input type='hidden' name='{$groupArray[$i]}{$j}' id='{$groupArray[$i]}{$j}_id' value='{$players[$groupArray[$i]][$j][id]}' />
+                                                  <input type='hidden' id='{$groupArray[$i]}{$j}_name' value='{$players[$groupArray[$i]][$j][name]}' />
+                                                  <input type='hidden' id='{$groupArray[$i]}{$j}_letter' value='{$players[$groupArray[$i]][$j][letter]}' />
+                                              </if>
+                                          </td>
+                                      </tr>
+                                  </for>
+                              </tbody>
+                          </table> 
+                      </div> 
+                  </for>
+              </form>
+           </if>                
+        </div>
+        
+        <input type='hidden' id='current_player_id' value='' />
+        <input type='hidden' id='current_player_name' value='' />
+        <input type='hidden' id='current_player_letter' value='' />
+        <input type='hidden' id='current_player_element_id' value='' />
+        
+       <!-- Modal -->
+        <div class="modal fade" id="arrangePlayer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">选择选手</h4>
+              </div>
+              <div class="modal-body">
+                 <div class="row">
+            
+            <div class="col-xs-2 col-md-2">
+              <div class="bs-sidebar hidden-print" role="complementary">
+                <ul class="nav bs-sidenav">  
+                    <li><a href="#A">A</a></li>
+                    <li><a href="#B">B</a></li>
+                    <li><a href="#C">C</a></li>
+                    <li><a href="#D">D</a></li>
+                    <li><a href="#E">E</a></li>
+                    <li><a href="#F">F</a></li>
+                    <li><a href="#G">G</a></li>
+                    <li><a href="#H">H</a></li>
+                    <li><a href="#I">I</a></li>
+                    <li><a href="#J">J</a></li>
+                    <li><a href="#K">K</a></li>
+                    <li><a href="#L">L</a></li>
+                    <li><a href="#M">M</a></li>
+                    <li><a href="#N">N</a></li>
+                    <li><a href="#O">O</a></li>
+                    <li><a href="#P">P</a></li>
+                    <li><a href="#Q">Q</a></li>
+                    <li><a href="#R">R</a></li>
+                    <li><a href="#S">S</a></li>
+                    <li><a href="#T">T</a></li>
+                    <li><a href="#U">U</a></li>
+                    <li><a href="#V">V</a></li>
+                    <li><a href="#W">W</a></li>
+                    <li><a href="#X">X</a></li>
+                    <li><a href="#Y">Y</a></li>
+                    <li><a href="#Z">Z</a></li>
+                 </ul>
+              </div>
+            </div>
+                    
+            <div class="col-md-10 col-xs-10" role="main">
+                <a class='btn btn-warning' href="javascript:void(0)" onclick="removePlayer();" title='移除当前已安排的选手，可重新安排。'>移除</a>
+                <volist name="letterList" id="letter"> 
+                    <div id="{$letter}" class="row">
+                        <p>-{$letter}-</p>
+                        <if condition="$hasSetPlayer neq 1">
+                            <volist name="playerList[$letter]" id="item">  
+                                <a class='btn btn-info' style="margin:1;"  href="javascript:void(0)" onclick="setPlayer(this,'{$item.id}','{$item.name}','{$letter}');$('#close').click();">{$item.name}</a>&nbsp;
+                            </volist>
+                        </if>
+                    </div> 
+                </volist>
+            </div>
+        </div>   <!-- /.row -->  
+              </div>
+              <div class="modal-footer">
+                <button id="close" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <include file="Common:footer" />
+      </div>
+      
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+     <script>
+           
+       //在页面初始化事件（onload）时注册的自定义事件
+     window.addEventListener("load", false);
+         
+         // 移除选手
+         function removePlayer(){
+             // 获取当前操作的元素id
+             var element_id = $('#current_player_element_id').val();
+             // 获取当前的选手名和id,字母缩写
+             var name = $('#current_player_name').val();
+             var id = $('#current_player_id').val();
+             var letter = $('#current_player_letter').val();
+             
+             if(element_id!='' && name!='' && id!='' && letter!=''){
+                 // 将该选手从对阵中移除
+                 $('#'+element_id).html("<span class='glyphicon glyphicon-user'></span>");
+                 $('#'+element_id+'_id').val('');
+                 $('#'+element_id+'_name').val('');
+                 $('#'+element_id+'_letter').val('');
+                 $('#current_player_name').val('');
+                 $('#current_player_id').val('');
+                 $('#current_player_letter').val('');
+                 // 将选手恢复到选手列表中去
+                 var htmlStr = "<a class='btn btn-info' style='margin:1;' href='javascript:void(0)' onclick=\"setPlayer(this, '"+id+"', '"+name+"','"+letter+"');$('#close').click();\">"+name+"</a>&nbsp;";
+                 $('#'+letter).append(htmlStr);
+             }
+         }
+     
+         // 设置参赛选手
+         
+         function setPlayer(element, id, name, letter){
+             // 获取当前操作的元素id
+             var element_id = $('#current_player_element_id').val();
+             // 移除原先存在的选手到选手列表中
+             removePlayer();
+             // 设置当前的选手名和id,字母缩写
+             $('#'+element_id).html(name);
+             $('#'+element_id+'_id').val(id);
+             $('#'+element_id+'_name').val(name);
+             $('#'+element_id+'_letter').val(letter);
+             // 从选手列表中移除当前已设置的选手
+             element.remove();
+                          
+         }
+       
+    </script>
+  </body>
+</html>

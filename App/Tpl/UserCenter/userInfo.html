@@ -1,0 +1,356 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>网球人类</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body>
+    <!-- Carousel
+================================================== img:900*500-->
+      <include file="Common:header" />
+
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+      
+    
+    <div id="jiathis_main" >
+      <div class="container"  style="min-width:1100px; max-width:1280px" id="userInfo">
+    
+    <legend>
+        <h3>用户中心</h3>
+    </legend>
+    
+    <ul class="nav nav-tabs" id="myTab">
+      <li class="{$class0}"><a href="#info" data-toggle="tab">我的信息</a></li>
+      <li class="{$class1}"><a href="#invite" data-toggle="tab">我的约球</a></li>
+      <li class="{$class2}"><a href="#match" data-toggle="tab">我的活动</a></li>
+    </ul>
+
+    <!--分页-->
+    <div class="tab-content">
+      <div class="tab-pane fade {$class0} in" id="info"><!--分页1开始--> 
+          	<br/><br/>   
+          <div class="form-group row">
+          	<div class="col-sm-2" >
+                <div class="form-group row">
+                    <img id="portrait" width=200px  height=200px src="{$portrait}" class=" btn" data-toggle="modal" data-target="#portraitModal"/>    
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-offset-1" >
+                        <a href="__APP__/User/userEdit">编辑资料</a> <a href="javascript:void(0)" data-toggle="modal" data-target="#portraitModal">更换头像</a> 
+                        <if condition="$user.is_forbidden eq 1">
+                            <a><span class="badge btn btn-danger" title="因违反站规被封印，{$user.end_forbid_date}将解除封印">封印</span></a>
+                        </if>
+                    </div>
+                </div>
+            </div>    
+            <div class="col-sm-10" >
+                <br/>
+                <div class="form-group row">
+                    <span class="label label-success col-sm-offset-1 col-sm-2 control-span">用户名</span>
+            
+                    <div class="col-sm-3">
+                        <span class="label label-info">{$user.username}</span>
+                    </div>
+                    
+                    <span class="label label-success col-sm-2 control-span">真实姓名</span>
+                    <div  class="col-sm-2">
+                    <span id='truename' class="label label-info">{$user.truename}</span>    
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <span class="label label-success col-sm-offset-1 col-sm-2 control-span">性别</span>
+                    <div  class="col-sm-2">
+                    <span id='sex' class="label label-info"></span>    
+                    </div>
+                </div>
+            
+                <div class="form-group row">
+                    <span class="label label-success col-sm-offset-1 col-sm-2 control-span">QQ</span>
+            
+                    <div class="col-sm-3">
+                    <span class="label label-info">{$user.QQ} </span>    
+                    </div>
+            
+                    <span class="label label-success col-sm-2 control-span">手机号</span>
+            
+                    <div class="col-sm-2">
+                     <span class="label label-info">{$user.telephone} </span>   
+                    </div>
+                </div>
+            
+                <div class="form-group row">
+                   <span for="name" class="label label-success col-sm-offset-1 col-sm-2 control-span">邮箱</span>
+            
+                    <div class="col-sm-3">
+                     <span class="label label-info">{$user.mailbox} </span>   
+                    </div> 
+                    
+                    <span class="label label-success col-sm-2 control-span">每周打球次数</span>
+            
+                    <div class="col-sm-2">
+                    <span class="label label-info">{$user.frequency} </span>    
+                    </div>
+                    
+                </div>
+            
+                <br/>
+                
+                <div class="form-group row">
+                    <span class="label label-success col-sm-offset-1 col-sm-2 control-span">称号</span>
+            
+                    <div class="col-sm-3">
+                        <span id='level' class="label label-info">{$user.level}(exp:{$user.experience})</span>   
+                    </div>
+            
+                    <span class="label label-success col-sm-2 control-span">积分</span>
+            
+                    <div class="col-sm-2">
+                    <span class="label label-info">{$user.score} </span>    
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <span class="label label-success col-sm-offset-1 col-sm-2 control-span">角色</span>
+            
+                    <div class="col-sm-3">
+                    <span id='role' class="label label-info"></span>   
+                    </div>
+            
+                    <span class="label label-success col-sm-2 control-span">ntrp</span>
+            
+                    <div class="col-sm-2">
+                    <span class="label label-info">{$user.ntrp} </span>    
+                    </div>
+                </div>
+            
+                <div class="form-group row">
+                    <span class="label label-success col-sm-offset-1 col-sm-2 control-span">所在城市</span>
+            
+                    <div class="col-sm-3">
+                     <span class="label label-info">{$user.city} </span>   
+                    </div>
+                    <span class="label label-success col-sm-2 control-span">高校</span>
+            
+                    <div class="col-sm-2">
+                     <span class="label label-info">{$user.university} </span>   
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <span class="label label-success col-sm-offset-1 col-sm-2 control-span">上次登录日期</span>
+            
+                    <div class="col-sm-3">
+                     <span class="label label-info">{$user.last_logon_date} </span>   
+                    </div>
+                    <span class="label label-success col-sm-2 control-span">已登录天数</span>
+            
+                    <div class="col-sm-2">
+                     <span class="label label-info">{$user.logon_days} </span>   
+                    </div>
+                </div>
+                
+			</div>
+			</div>
+          <br/><br/>
+      </div><!--分页1结束-->
+        
+      <div class="tab-pane fade {$class1} in" id="invite"><!--分页2开始--> 
+          <div class="row">
+              <if condition="$exist1 eq 0">
+                     <br/><center><img src="__IMG__/notExist.jpg"  alt="暂无"/></center>
+                     <else/>
+          <volist name="invitationList" id="item">
+                    <div class="panel panel-info">
+                        <div class="col-xs-12 col-md-12 panel-heading">
+                            <a class="col-xs-6 col-md-6 panel-title" target="_blank" href="__APP__/Invitation/invite_detail?type={$item.invitation_type}&id={$item.id}">{$item.title}</a>
+                            <span class="col-xs-2 col-md-2"><if condition="$item.invitation_type eq 1">临时约球<else/>长期求友</if></span>
+                            <span class="col-xs-2 col-md-2">{$item.update_date}</span>
+                            	
+                            <a href="__APP__/User/editActivity?type={$item.invitation_type}&id={$item.id}" target="_blank"><span class="col-xs-1 col-md-1 glyphicon glyphicon-edit"></span></a>
+                            <a href="#" data-toggle="modal" data-target="#alertModal" onclick="$('#invitation_type').val({$item.invitation_type});$('#id').val({$item.id});$('#pageId').val({$pageId00});"><span class="col-xs-1 col-md-1 glyphicon glyphicon-remove"></span></a>
+                            <a href="__APP__/Invitation/invite_detail?type={$item.invitation_type}&id={$item.id}#comment_div"><span class="col-xs-1 col-md-1 glyphicon glyphicon-list"></span><span class=" badge btn btn-success" title="评论条数">{$item.numOfComment}</span></a>
+                        </div>
+                    </div>
+                  </volist></if>
+              <input type="hidden" id="id" value=""/>
+              <input type="hidden" id="pageId" value=""/>
+              <input type="hidden" id="invitation_type" value=""/>
+          </div>
+          <div class="row">
+            <ul class="pager">
+                <if condition="$pageId00 eq $pageId01">
+                	<li class="previous"><a style="margin-top:20px"  href="#">&larr; Older</a></li> 
+                <else/>
+                    <li class="previous"><a style="margin-top:20px"  href="__APP__/User/myActivity?pageId0={$pageId0}&pageId00={$pageId01}&class=class1">&larr; Older</a></li> 
+                </if>
+                <li class="center"><a style="margin-top:20px" href="#">{$page00}</a></li>
+                <if condition="$pageId00 eq $pageId02">
+                	<li class="next"><a style="margin-top:20px" href="#">Newer &rarr;</a></li>
+                <else/>
+                	<li class="next"><a style="margin-top:20px" href="__APP__/User/myActivity?pageId0={$pageId0}&pageId00={$pageId02}&class=class1">Newer &rarr;</a></li>
+                </if>
+            </ul>
+            </div>
+      </div><!--分页2结束-->
+        
+       <!--分页3开始-->
+      <div class="tab-pane fade {$class2} in" id="match">
+          
+        	<div class="row">
+                <if condition="$exist2 eq 0">
+                    <br/>
+                     <center><img src="__IMG__/notExist.jpg"  alt="暂无"/></center>
+                     <else/>
+                 <volist name="activityList" id="item">
+                     <div class="col-xs-4 col-md-4">
+                         <div class="thumbnail">
+                             <a href="__APP__/Activity/activity_detail?id={$item.id}" style="text-decoration: none;"> <img width="100%" height="auto" src="{$item.cover}" alt="..."></a>
+                             <div class="caption">
+                                 <h3>
+                                     <a href="__APP__/Activity/activity_detail?id={$item.id}"> <span style="color:#005EAC" class="title-overflow">{$item.title}</span> </a>                              
+                                 </h3>
+                                 <table style="font-size:12px">
+                                     <tr>
+                                         <td width="63" valign="baseline">活动简介：</td>
+                                         <td valign="baseline"><a href="__APP__/Activity/activity_detail?id={$item.id}" style="color:#333; text-decoration: none;"><span class="text-overflow ">  {$item.introduction}</span></a></td>                                 
+                             		 </tr>
+                                     <tr>
+                                         <td width="63" valign="baseline">开始时间：</td>
+                                         <td valign="baseline">{$item.start_time}</td>                                 
+                             		 </tr>
+                                     <tr>
+                                         <td width="63" valign="baseline">结束时间：</td>
+                                         <td valign="baseline">{$item.end_time}</td>                                 
+                             		 </tr>
+                                     
+                                 </table>
+                             </div>
+                         </div>
+                     </div>
+                    </volist></if>
+             </div>
+             
+          <div class="row">
+             <ul class="pager">
+                 <if condition="$pageId0 eq $pageId1">
+                     <li class="previous"><a style="margin-top:20px"  href="#">&larr; Older</a></li>
+                 <else/>
+                 	<li class="previous"><a style="margin-top:20px"  href="__APP__/User/myActivity?pageId0={$pageId1}&pageId00={$pageId00}&class=class2">&larr; Older</a></li>     
+                 </if>
+                 <li class="center"><a style="margin-top:20px" href="#">{$page0}</a></li>
+                 <if condition="$pageId0 eq $pageId2">
+                 	<li class="next"><a style="margin-top:20px" href="#">Newer &rarr;</a></li>
+                 <else/>
+                     <li class="next"><a style="margin-top:20px" href="__APP__/User/myActivity?pageId0={$pageId2}&pageId00={$pageId00}&class=class2">Newer &rarr;</a></li>
+                 </if>
+                 
+             </ul>
+         </div>        
+        
+      </div><!--分页3结束-->
+        
+    </div>
+
+
+ <!-- FOOTER -->
+	 <include file="Common:footer" />
+   
+     <!-- Modal -->
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">警 告</h4>
+      </div>
+      <div class="modal-body">
+        是否确定删除？该操作不可逆哦！
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onclick="deleteRecord();">确定</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+          
+     <!-- Modal --
+	<!-- download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0 -->
+    <div class="modal fade" id="portraitModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content" style="width:700px">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">头像编辑</h4>
+          </div>
+          <div class="modal-body">
+              <OBJECT  classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+        codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0"
+        WIDTH="600" HEIGHT="450" id="myMovieName">
+        <PARAM NAME="movie" VALUE="__PUBLIC__/flash/avatar.swf">
+        <PARAM NAME="quality" VALUE=high>
+        <PARAM NAME="bgcolor" VALUE=#FFFFFF>
+        <param name="flashvars" value="imgUrl=__IMG__/portrait.jpg&uploadUrl=__APP__/User/do_avatar_edit&uploadSrc=true" />
+        <EMBED src="__PUBLIC__/flash/avatar.swf" quality=high bgcolor=#FFFFFF WIDTH="600" HEIGHT="450" wmode="transparent" 
+        flashVars="imgUrl=__IMG__/portrait.jpg&uploadUrl=__APP__/User/do_avatar_edit&uploadSrc=true"
+         NAME="myMovieName" ALIGN="" TYPE="application/x-shockwave-flash" allowScriptAccess="always"
+         PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer" />
+    </OBJECT>
+      
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关 闭（刷新）</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    
+    
+	<script type="text/javascript">
+        function deleteRecord(){
+        	var url = "__APP__/User/deleteActivity?type="+$('#invitation_type').val()+"&id="+$('#id').val()+"&pageId="+$('#pageId').val();    
+            location = url;
+        }
+		$('#portraitModal').on('hidden.bs.modal', function (e) {
+            location.reload();
+        });
+                                             
+        if({$user.sex} == 0)
+            $("#sex").text("男");
+        else
+            $("#sex").text("女");
+		     
+        
+        if({$user.role}  == 0)
+            $("#role").text("管理员");
+        else if({$user.role}  == 1)
+            $("#role").text("高级用户");
+        else
+            $("#role").text("普通用户");
+       
+     </script>
+
+</div>
+      </div></div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+  
+    
+</html>

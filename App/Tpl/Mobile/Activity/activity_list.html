@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>心隨球動</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+    
+    
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="load(3)">
+    <!-- Carousel
+================================================== img:900*500-->
+      <include file="Common:header" />
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+      <div id="jiathis_main" class="container">
+               <span class="btn btn-info"><h3>心随球动</h3></span>
+     <div class="row">
+         
+             <div class="row">
+                 <if condition="$exist eq 0">
+                     <center><img width="100%" src="__IMG__/notExist.jpg"  alt="暂无"/></center>
+                     <else/>
+                 <volist name="list" id="item">
+                     <div class="col-xs-12">
+                         <div class="thumbnail">
+                             <a href="__APP__/Mobile/Activity/activity_detail?id={$item.id}" style="text-decoration: none;"> <img width="100%" height="auto" src="{$item.cover}" alt="..."></a>
+                             <div class="caption">
+                                 <h3>
+                                     <a href="__APP__/Mobile/Activity/activity_detail?id={$item.id}"> <span style="color:#005EAC" class="title-overflow"  title="{$item.title}">{$item.title}</span> </a>                              
+                                 </h3>
+                                 <table style="font-size:12px">
+                                     <tr>
+                                         <td width="63" valign="baseline">活动简介：</td>
+                                         <td valign="baseline"><a href="__APP__/Mobile/Activity/activity_detail?id={$item.id}" style="color:#333; text-decoration: none;" ><span class="text-overflow " title="{$item.introduction}">  {$item.introduction}</span></a></td>                                 
+                             		 </tr>
+                                     <tr>
+                                         <td width="63" valign="baseline">开始时间：</td>
+                                         <td valign="baseline">{$item.start_time}</td>                                 
+                             		 </tr>
+                                     <tr>
+                                         <td width="63" valign="baseline">结束时间：</td>
+                                         <td valign="baseline">{$item.end_time}</td>                                 
+                             		 </tr>
+                                      <tr>
+                                         <td width="63" valign="baseline">当前状态：</td>
+                                         <td valign="baseline"><span style="color:rgb(239, 66, 35)">{$item.tip}</span> </td>                                 
+                             		 </tr>
+                                 </table>
+                                 <p>
+                                     <if condition="($item.need_sign eq 1)">
+                                         <a id="{$item.id}_1a" href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#ensureModal" onclick="document.getElementById('signId').value ='{$item.id}';document.getElementById('activityType').value ='{$item.activityType}';" {$item.disable1}><span id="{$item.id}_1" class="glyphicon glyphicon-send" title="想来你就点一下"> {$item.sign}</span></a> 
+                                           <input id="signId" type="hidden" value=0 />
+                                     <else/>
+                                         <a  href="#" class="btn btn-primary" role="button" disabled>无需报名</a> 
+                                           
+                                     </if>
+                                     <a id="{$item.id}_2a" href="#" class="btn btn-default" role="button" onclick="goodComment({$item.id});" {$item.disable2} ><span id="{$item.id}_2" class="glyphicon glyphicon-thumbs-up" title="好赞你就来一个"> {$item.good}</span></a>                                 	
+                                    
+                                 </p>
+                             </div>
+                         </div>
+                     </div>
+                 </volist>
+                     
+                 </if>
+             </div>
+             
+          <div >
+             <ul class="pager">
+                 <if condition="$pageId eq $pageId1">
+                 <li class="previous"><a style="margin-top:20px"  href="#">&larr; Older</a></li>
+                     <else/>
+                     <li class="previous"><a style="margin-top:20px"  href="__APP__/Mobile/Activity/activity_list?type={$type}&pageId={$pageId1}">&larr; Older</a></li>
+                 </if>
+                 <li class="center"><a style="margin-top:20px" href="#">{$page}</a></li>
+                     <if condition="$pageId eq $pageId2">
+                 <li class="next"><a style="margin-top:20px" href="#">Newer &rarr;</a></li>
+                         <else/>
+                          <li class="next"><a style="margin-top:20px" href="__APP__/Mobile/Activity/activity_list?type={$type}&pageId={$pageId2}">Newer &rarr;</a></li>
+                     </if>
+                 
+             </ul>
+         </div>
+               
+        
+         
+             <div >
+                 <legend><h4>推荐活动 </h4></legend>
+                 <volist name="topList" id="item">
+					<div class=" col-xs-12">
+                     <div class="thumbnail">
+                         <a href="__APP__/Mobile/Activity/activity_detail?id={$item.id}" style="text-decoration: none;"> 
+                             <div class="caption">
+                                 <h4 style="color:#005EAC"><span class="title-overflow" title="{$item.title}">{$item.title}</span></h4>                           
+                             </div>
+                             <img src="{$item.cover}" width="100%" height="auto" alt="...">
+                             <div class="caption">                             
+                                 <p style="font-size:12px"><span class="text-overflow " title="{$item.introduction}">{$item.introduction}</span></p>                            
+                             </div>
+                         </a>
+                     </div>
+                     </div>
+                 </volist>
+             </div>
+              
+         </div>  
+            
+        
+        
+        
+        <!-- Modal -->
+        <div class="modal fade" id="ensureModal"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Are you sure?</h4>
+              </div>
+              <div class="modal-body">
+                 感谢你的积极与热情，确定要报名参与此次活动？不可失约哟！~
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="sign();">确定</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        
+        <!-- Modal -->
+        <div class="modal fade" id="alert"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel"><span class="btn-info">提示</span></h4>
+              </div>
+              <div id="alertTip" class="modal-body">
+                 
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+      
+	<include file="Common:footer" />
+    </div><!-- /.container -->
+      
+	<input id="result" type="hidden" value="0" />
+    <input id="id_index" type="hidden" value="0" />
+    <input id="activityType" type="hidden"  value />
+      
+	<script type="text/javascript">
+          $('#alert').on('hidden.bs.modal', function (e) {
+            if($("#result").val()==0 || $("#result").val()==-1){	
+                return false;
+            }
+            else{                
+             	$("#"+$("#id_index").val()).text($("#result").val());
+                $("#"+$("#id_index").val()+"a").attr("disabled","disabled");                
+            }
+		});
+        
+    	var xmlHttp;
+
+        function GetXmlHttpObject()
+        {
+            var xmlHttp=null;
+            try
+             {
+                 // Firefox, Opera 8.0+, Safari
+                 xmlHttp=new XMLHttpRequest();
+             }
+            catch (e)
+             {
+                 // Internet Explorer
+                 try
+                  {
+                  	xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+                  }
+                 catch (e)
+                  {
+                  	xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+             }
+            return xmlHttp;
+        } 
+        
+        function sign()
+        {
+            
+            xmlHttp=GetXmlHttpObject();            
+            if (xmlHttp==null)
+            {
+              alert ("Browser does not support HTTP Request");
+              return;
+            } 
+             var url="__APP__/Activity/activity_sign?type="+document.getElementById("activityType").value+"&id="+document.getElementById("signId").value;
+            $("#id_index").val($("#signId").val()+"_1");
+            
+            xmlHttp.onreadystatechange=stateChangedForSign; 
+            xmlHttp.open("GET",url,true);
+            xmlHttp.send(null);
+        } 
+        
+        function goodComment(id)
+        {
+            xmlHttp=GetXmlHttpObject();
+            if (xmlHttp==null)
+            {
+              alert ("Browser does not support HTTP Request");
+              return;
+            } 
+            var url="__APP__/Mobile/Activity/activity_comment?id="+id;
+            $("#id_index").val(id+"_2");
+            
+            xmlHttp.onreadystatechange=stateChangedForGoodComment; 
+            xmlHttp.open("GET",url,true);
+            xmlHttp.send(null);
+        } 
+        
+        function stateChangedForSign() 
+        { 
+            var data = "";
+            var jObject;
+            if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+             { 
+                 if(xmlHttp.status == 200){  
+                     	jObject = eval('('+xmlHttp.responseText+')'); 
+                         switch(jObject.data){
+                             case -1: data="请先登录，再操作！"; $("#result").val(0); break;    
+                             case 0: data="报名失败！"; $("#result").val(0); break;
+                             case -2: data="报名失败，需要用户在用户中心补充真实姓名或手机号码！"; $("#result").val(0); break;
+                             default:data="报名成功！"; $("#result").val(" 已报名("+jObject.data+")"); break;
+                         }
+                     	
+                    } else {  
+                        data = "系统开小差啦，快联系管理员！";
+                    } 
+                 $('#alertTip').text(data);
+                 $('#alert').modal('show');
+                 
+             } 
+        }
+        
+        function stateChangedForGoodComment() 
+        { 
+            if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+             { 
+                 var data = "";
+                if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+             	{ 
+                     if(xmlHttp.status == 200){  
+                            jObject = eval('('+xmlHttp.responseText+')'); 
+                             switch(jObject.data){
+                                 case -1: data="请先登录，再操作！"; $("#result").val(0); break;    
+                                 case 0: data="小赞失败！"; $("#result").val(0); break;
+                                 default: data="大赞成功！"; $("#result").val(" 已赞("+jObject.data+")") ;break;
+                             }                           
+                        } else {  
+                           	data = "系统开小差啦，快联系管理员！";
+                         }   
+                 	
+                    $('#alertTip').text(data);
+                    $('#alert').modal('show'); 
+             } 
+        }
+        
+        
+            }
+    </script>
+    
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+  </body>
+</html>

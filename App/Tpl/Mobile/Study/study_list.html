@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>必有我师</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap3.0.3.min.css">
+    
+    <!-- Custom styles for this template -->
+    <link href="__CSS__/my.css" rel="stylesheet">
+    <link rel="shortcut icon" href="__IMG__/logo.jpg">
+</head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="load(2)">
+    <!-- Carousel
+================================================== img:900*500-->
+    <include file="Common:header" />
+	
+
+    <div id="jiathis_main" class="container">
+       
+        <ol class="breadcrumb">
+            <li><a href="__APP__/Mobile/Index/index">首页</a></li>
+            <li><a href="__APP__/Mobile/Study/study">教学</a></li>        
+            <li>{$module}</li>
+        </ol>
+        
+        <div class="row">
+        <div class="col-xs-offset-1 col-md-offset-1 col-xs-10 col-md-10"> 
+            <div class="form-group">
+                <form class="form-inline" role="form" action="__APP__/Mobile/Study/study_list" method="get">
+                  <div class="form-group">
+                      <label class="sr-only" for="keyword">关键词</label>
+                      <input name="keyword" class="form-control" id="exampleInputEmail2" placeholder="关键词" value="{$keyword}">
+                  </div>                     
+                  
+                  
+                    <input type="hidden" name="pageId" value='0'/>
+                    <input type="hidden" name="theme" value='{$theme}'/>
+                    <input type="hidden" name="type" value='{$type}'/>
+                    
+                  <button type="submit" class="btn btn-primary" >条件搜索</button>
+                  <a  href="__APP__/Mobile/Study/study_list?theme={$theme}&type={$type}&pageId=0" class="btn btn-default" role="button" >默认搜索</a>
+                  
+              </form>
+          </div>
+          
+            <if condition="$type eq 1">
+                <ul class="pagination">
+                <li class="active"><a href="__APP__/Mobile/Study/study_list?theme={$theme}&type=1&pageId=0">文本 <span class="sr-only">(current)</span></a></li>
+                <li><a href="__APP__/Mobile/Study/study_list?theme={$theme}&type=2&pageId=0">视频 <span class="sr-only">(current)</span></a></li>
+                </ul>  
+            
+                <volist name="txtList" id="item">
+                    <div class="panel panel-info">
+                        <div class="col-xs-12 col-md-12 panel-heading">
+                            	<a class="col-xs-10 col-md-10 panel-title" href="__APP__/Mobile/Study/study_detail?type=1&id={$item.id}">{$item.title}</a>
+                            	
+                        </div>
+                    </div>
+                </volist>
+            <else/>
+                <ul class="pagination">
+                    <li><a href="__APP__/Mobile/Study/study_list?theme={$theme}&type=1&pageId=0">文本 <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="__APP__/Mobile/Study/study_list?theme={$theme}&type=2&pageId=0">视频 <span class="sr-only">(current)</span></a></li>
+                </ul>  
+            
+                
+                 <div class="row">
+                     <if condition="$exist eq 0">
+                     <center><img src="__IMG__/notExist.jpg"  alt="暂无"/></center>
+                     <else/>
+                    <volist name="videoList" id="item">
+                      <div class="col-xs-12 col-md-4">
+                        <div class="thumbnail">
+                          <div class="caption">
+                              <div class="panel panel-info" style="margin-bottom:0px">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title title-overflow" title="{$item.title}">{$item.title}</h4>
+                                </div>
+                            </div>
+                              
+                          </div>                            
+                          <a href="__APP__/Mobile/Study/study_detail?type=2&id={$item.id}">  <img width="100%" src="{$item.imgName}" alt="暂无图片"></a>
+                        </div>
+                      </div>
+                    </volist>
+                     </if>
+                  </div>
+                
+            </if>
+            
+            <div class="row">
+            <ul class="pager">
+                <if condition="$pageId eq $pageId1">
+                <li class="previous"><a style="margin-top:20px"  href="#">&larr; Older</a></li> 
+                    <else/>
+                    <li class="previous"><a style="margin-top:20px"  href="__APP__/Mobile/Study/study_list?theme={$theme}&type={$type}&pageId={$pageId1}{$condition}">&larr; Older</a></li> 
+                </if>
+                <li class="center"><a style="margin-top:20px" href="#">{$page}</a></li>
+                <if condition="$pageId eq $pageId2">
+                <li class="next"><a style="margin-top:20px" href="#">Newer &rarr;</a></li>
+                    <else/>
+                    <li class="next"><a style="margin-top:20px" href="__APP__/Mobile/Study/study_list?theme={$theme}&type={$type}&pageId={$pageId2}{$condition}">Newer &rarr;</a></li>
+                    </if>
+            </ul>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+			<include file="Common:footer" />
+        </div>
+    </div><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script src="__JS__/sidebar.js"></script>
+  </body>
+  
+</html>
